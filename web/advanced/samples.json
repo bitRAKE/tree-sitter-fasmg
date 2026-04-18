@@ -16,5 +16,11 @@
     "source": "remote",
     "url": "https://raw.githubusercontent.com/tgrysztar/fasm2/master/include/x86-2.inc",
     "note": "Builder-builder pattern; likely unparseable by the current grammar. Fetches latest from upstream; loader lands in Phase 6."
+  },
+  {
+    "label": "fasm2 irps.inc (master, remote)",
+    "source": "remote",
+    "url": "https://raw.githubusercontent.com/tgrysztar/fasm2/master/include/irps.inc",
+    "note": "Literal built-in namespace expansion; outscope + unbalanced blocking keywords; label_instruction CALM with advanced match. Small enough to navigate without great struggle."
   }
 ]

@@ -46,6 +46,8 @@
             </select>
           </label>
           <button type="button" class="toolbar-button" id="reset-query">Reset Query</button>
+          <button type="button" class="toolbar-button" id="share-link" title="Copy a share link with the current source, query, and ad-hoc">Share</button>
+          <button type="button" class="toolbar-button toolbar-button-subtle" id="clear-workspace" title="Clear localStorage state and reload defaults">Clear</button>
         </div>
 
         <div class="topbar-group topbar-status">
@@ -218,6 +220,7 @@
               </button>
             </div>
             <div class="pane-tools">
+              <button type="button" class="toolbar-button toolbar-button-subtle" id="copy-tree" title="Copy the tree S-expression to the clipboard">Copy tree</button>
               <span class="pane-caption" id="output-caption">Concrete syntax tree from the browser-side parser</span>
             </div>
           </div>

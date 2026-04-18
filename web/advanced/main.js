@@ -135,6 +135,9 @@ const elements = {
   contextOutput: document.querySelector("#context-output"),
   contextSummary: document.querySelector("#context-summary"),
   contextPill: document.querySelector("#context-pill"),
+  shareLink: document.querySelector("#share-link"),
+  clearWorkspace: document.querySelector("#clear-workspace"),
+  copyTree: document.querySelector("#copy-tree"),
 };
 
 let sourceView = null;
@@ -184,14 +187,22 @@ async function bootstrap() {
   bindSplitter();
   bindResetQuery();
   bindSamplesSelect();
+  bindShareLink();
+  bindClearWorkspace();
+  bindCopyTree();
   void populateSamples();
 
+  const shared = decodeStateFromHash();
   const storedSource = readStorage(STORAGE_KEYS.source);
   const storedQuery = readStorage(STORAGE_KEYS.query);
   const storedAdhoc = readStorage(STORAGE_KEYS.adhoc);
-  const initialSource = storedSource ?? DEFAULT_SOURCE;
-  const initialQuery = storedQuery ?? defaultQueryText;
-  const initialAdhoc = storedAdhoc ?? DEFAULT_ADHOC;
+  const initialSource = shared?.s ?? storedSource ?? DEFAULT_SOURCE;
+  const initialQuery = shared?.q ?? storedQuery ?? defaultQueryText;
+  const initialAdhoc = shared?.a ?? storedAdhoc ?? DEFAULT_ADHOC;
+  if (shared) {
+    elements.runtimeLog.textContent =
+      "Loaded state from URL hash. Edits overwrite the shared copy in localStorage.";
+  }
 
   mountSource(initialSource);
   mountQuery(initialQuery);
@@ -917,6 +928,92 @@ function bindResetQuery() {
       },
     });
   });
+}
+
+// --- share / clear / copy -----------------------------------------
+
+function bindShareLink() {
+  if (!elements.shareLink) return;
+  elements.shareLink.addEventListener("click", async () => {
+    const state = {
+      s: sourceView?.state.doc.toString() ?? "",
+      q: queryView?.state.doc.toString() ?? "",
+      a: adhocView?.state.doc.toString() ?? "",
+    };
+    const hash = encodeStateToHash(state);
+    const url = `${location.origin}${location.pathname}#${hash}`;
+    history.replaceState(null, "", `#${hash}`);
+
+    try {
+      await navigator.clipboard.writeText(url);
+      setRuntimeStatus("ready", "Share link copied");
+      elements.runtimeLog.textContent = `Copied ${url}`;
+    } catch {
+      setRuntimeStatus("ready", "Share link in URL bar");
+      elements.runtimeLog.textContent =
+        `Copy failed; URL updated anyway: ${url}`;
+    }
+  });
+}
+
+function bindClearWorkspace() {
+  if (!elements.clearWorkspace) return;
+  elements.clearWorkspace.addEventListener("click", () => {
+    const confirmed = window.confirm(
+      "Clear source, query, ad-hoc, tabs, and splitter from localStorage and reload defaults? (Cannot be undone.)",
+    );
+    if (!confirmed) return;
+    for (const key of Object.values(STORAGE_KEYS)) {
+      try {
+        window.localStorage.removeItem(key);
+      } catch {
+        // best-effort
+      }
+    }
+    history.replaceState(null, "", location.pathname);
+    location.reload();
+  });
+}
+
+function bindCopyTree() {
+  if (!elements.copyTree) return;
+  elements.copyTree.addEventListener("click", async () => {
+    if (!treeView) return;
+    const text = treeView.state.doc.toString();
+    try {
+      await navigator.clipboard.writeText(text);
+      setRuntimeStatus("ready", "Tree copied to clipboard");
+    } catch {
+      setRuntimeStatus("error", "Clipboard write failed");
+    }
+  });
+}
+
+function encodeStateToHash(state) {
+  const json = JSON.stringify(state);
+  const base64 = btoa(unescape(encodeURIComponent(json)));
+  return "s=" + base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function decodeStateFromHash() {
+  const hash = location.hash.replace(/^#/, "");
+  if (!hash.startsWith("s=")) return null;
+  try {
+    let b64 = hash.slice(2).replace(/-/g, "+").replace(/_/g, "/");
+    while (b64.length % 4) b64 += "=";
+    const json = decodeURIComponent(escape(atob(b64)));
+    const state = JSON.parse(json);
+    if (
+      typeof state?.s !== "string" ||
+      typeof state?.q !== "string" ||
+      typeof state?.a !== "string"
+    ) {
+      return null;
+    }
+    return state;
+  } catch {
+    return null;
+  }
 }
 
 // --- samples dropdown -----------------------------------------------

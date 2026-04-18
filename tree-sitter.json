@@ -1,0 +1,22 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "fasmg",
+      "camelcase": "Fasmg",
+      "scope": "source.fasmg",
+      "path": ".",
+      "file-types": [
+        "fasm",
+        "finc"
+      ],
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for fasmg (flat assembler g)."
+  }
+}

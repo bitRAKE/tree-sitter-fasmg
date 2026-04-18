@@ -1,0 +1,77 @@
+==================================
+Match and conditional blocks
+==================================
+
+match =FileName,FileName
+  display "ok"
+else
+  err "missing"
+end match
+
+if flag
+  display "yes"
+else if other_flag
+  display "other"
+else
+  err "no"
+end if
+
+---
+
+(source_file
+  (match_block
+    pattern: (match_pattern
+      (argument_list
+        (argument
+          (argument_atom
+            (sigil_token)))
+        (argument
+          (argument_atom
+            (identifier)))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (string_literal))))))
+    else_clause: (else_clause
+      body: (block_body
+        (directive_statement
+          keyword: (directive_keyword)
+          arguments: (argument_list
+            (argument
+              (argument_atom
+                (string_literal))))))))
+  (if_block
+    condition: (argument_list
+      (argument
+        (argument_atom
+          (identifier))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (string_literal))))))
+    else_if_clauses: (else_if_clause
+      condition: (argument_list
+        (argument
+          (argument_atom
+            (identifier))))
+      body: (block_body
+        (directive_statement
+          keyword: (directive_keyword)
+          arguments: (argument_list
+            (argument
+              (argument_atom
+                (string_literal)))))))
+    else_clause: (else_clause
+      body: (block_body
+        (directive_statement
+          keyword: (directive_keyword)
+          arguments: (argument_list
+            (argument
+              (argument_atom
+                (string_literal)))))))))

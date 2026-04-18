@@ -1,0 +1,133 @@
+==================================
+Include corpus forms
+==================================
+
+iterate <instr,supp>, sha1msg1,0C9h, sha1msg2,0CAh,
+  macro instr? dest*,src*
+    check ~ flags and (mask or other)
+    initsym m, parser context,
+  end macro
+end iterate
+
+calminstruction x87.parse_operand#context operand
+  match =st?(i), operand
+  jyes indexed_streg_operand
+end calminstruction
+
+macro v#instr? dest*,src*,src2*&
+end macro
+
+---
+
+(source_file
+  (iterate_block
+    arguments: (argument_list
+      (argument
+        (angled_argument
+          (angled_text_fragment)))
+      (argument
+        (argument_atom
+          (identifier)))
+      (argument
+        (argument_atom
+          (number_literal)))
+      (argument
+        (argument_atom
+          (identifier)))
+      (argument
+        (argument_atom
+          (number_literal))))
+    body: (block_body
+      (macro_definition
+        name: (symbol_name
+          (identifier))
+        parameters: (parameter_list
+          (parameter
+            name: (symbol_name
+              (identifier)))
+          (parameter
+            name: (symbol_name
+              (identifier))))
+        body: (block_body
+          (instruction_statement
+            name: (symbol_name
+              (identifier))
+            arguments: (instruction_argument_list
+              (instruction_argument
+                (instruction_argument_head
+                  (operator_token))
+                (argument_atom
+                  (identifier))
+                (argument_atom
+                  (word_operator))
+                (argument_atom
+                  (parenthesized_argument
+                    (argument_list
+                      (argument
+                        (argument_atom
+                          (identifier))
+                        (argument_atom
+                          (word_operator))
+                        (argument_atom
+                          (identifier)))))))))
+          (instruction_statement
+            name: (symbol_name
+              (identifier))
+            arguments: (instruction_argument_list
+              (instruction_argument
+                (instruction_argument_head
+                  (identifier)))
+              (argument
+                (argument_atom
+                  (identifier))
+                (argument_atom
+                  (identifier)))))))))
+  (calminstruction_definition
+    name: (symbol_name
+      (identifier)
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (match_statement
+            pattern: (match_pattern
+              (argument_list
+                (argument
+                  (argument_atom
+                    (sigil_token))
+                  (argument_atom
+                    (parenthesized_argument
+                      (argument_list
+                        (argument
+                          (argument_atom
+                            (identifier)))))))
+                (argument
+                  (argument_atom
+                    (identifier))))))))
+      (calm_statement
+        (calm_simple_statement
+          (instruction_statement
+            name: (symbol_name
+              (identifier))
+            arguments: (instruction_argument_list
+              (instruction_argument
+                (instruction_argument_head
+                  (identifier)))))))))
+  (macro_definition
+    name: (symbol_name
+      (identifier)
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier)))
+      (parameter
+        name: (symbol_name
+          (identifier)))
+      (parameter
+        name: (symbol_name
+          (identifier))))))

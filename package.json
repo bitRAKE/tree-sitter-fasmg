@@ -1,0 +1,13 @@
+{
+  "name": "tree-sitter-fasmg",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Tree-sitter grammar for fasmg (flat assembler g).",
+  "scripts": {
+    "generate": "bash scripts/ts.sh generate --js-runtime native",
+    "test": "bash scripts/ts.sh test"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.26.8"
+  }
+}

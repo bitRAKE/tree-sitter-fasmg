@@ -1,0 +1,424 @@
+==================================
+Phase 1: keyword shadowed in argument position
+==================================
+
+macro caller
+  cominvk DDSPrimary, Restore
+  foo bar, Restore, baz
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (instruction_statement
+        name: (symbol_name
+          (identifier))
+        arguments: (instruction_argument_list
+          (instruction_argument
+            (instruction_argument_head
+              (identifier)))
+          (argument
+            (argument_atom
+              (identifier)))))
+      (instruction_statement
+        name: (symbol_name
+          (identifier))
+        arguments: (instruction_argument_list
+          (instruction_argument
+            (instruction_argument_head
+              (identifier)))
+          (argument
+            (argument_atom
+              (identifier)))
+          (argument
+            (argument_atom
+              (identifier))))))))
+
+==================================
+Phase 1: trailing comma with line continuation after keyword in arg
+==================================
+
+macro caller
+  foo Bar,\
+      Restore,\
+      Baz
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (instruction_statement
+        name: (symbol_name
+          (identifier))
+        arguments: (instruction_argument_list
+          (instruction_argument
+            (instruction_argument_head
+              (identifier)))
+          (line_continuation)
+          (argument
+            (argument_atom
+              (identifier)))
+          (line_continuation)
+          (argument
+            (argument_atom
+              (identifier))))))))
+
+==================================
+Phase 2: recursive macro with `:` decorator
+==================================
+
+macro factorial: n
+  if n
+    factorial n-1
+  end if
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (if_block
+        condition: (argument_list
+          (argument
+            (argument_atom
+              (identifier))))
+        body: (block_body
+          (instruction_statement
+            name: (symbol_name
+              (identifier))
+            arguments: (instruction_argument_list
+              (instruction_argument
+                (instruction_argument_head
+                  (identifier))
+                (argument_atom
+                  (operator_token))
+                (argument_atom
+                  (number_literal))))))))))
+
+==================================
+Phase 2: struc with CI + recursive decorators
+==================================
+
+struc pow?: n, e
+  dd n
+end struc
+
+---
+
+(source_file
+  (struc_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier)))
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))))))))
+
+==================================
+Phase 2: calminstruction recursive decorator
+==================================
+
+calminstruction times?: statement&
+  local n
+  exit
+end calminstruction
+
+---
+
+(source_file
+  (calminstruction_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (directive_statement
+            keyword: (directive_keyword)
+            arguments: (argument_list
+              (argument
+                (argument_atom
+                  (identifier)))))))
+      (calm_statement
+        (calm_simple_statement
+          (instruction_statement
+            name: (symbol_name
+              (identifier))))))))
+
+==================================
+Phase 2: dotted name with chained decorators
+==================================
+
+macro end?.struct?!
+  display 'ends'
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (string_literal))))))))
+
+==================================
+Phase 3: catch-all calminstruction with `?` as name
+==================================
+
+calminstruction ? n&
+  assemble n
+end calminstruction
+
+---
+
+(source_file
+  (calminstruction_definition
+    name: (symbol_name
+      (placeholder_name))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (instruction_statement
+            name: (symbol_name
+              (identifier))
+            arguments: (instruction_argument_list
+              (instruction_argument
+                (instruction_argument_head
+                  (identifier))))))))))
+
+==================================
+Phase 3: catch-all calminstruction with `?!` modifier chain
+==================================
+
+calminstruction ?!n&
+  exit
+end calminstruction
+
+---
+
+(source_file
+  (calminstruction_definition
+    name: (symbol_name
+      (placeholder_name))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (instruction_statement
+            name: (symbol_name
+              (identifier))))))))
+
+==================================
+Phase 4: esc prefix emits into parent body
+:skip
+==================================
+
+macro wrap
+  esc struc inner
+  esc end struc
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (esc_statement
+        (struc_definition
+          name: (symbol_name
+            (identifier))))
+      (esc_statement
+        (free_end_clause)))))
+
+==================================
+Phase 4: floating `end namespace` inside macro body
+==================================
+
+macro struct? name
+  macro end?.struct?!
+    end namespace
+  end macro
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (macro_definition
+        name: (symbol_name
+          (identifier))
+        body: (block_body
+          (free_end_clause))))))
+
+==================================
+Phase 5: match pattern with literal CI and `]=` artefact
+==================================
+
+calminstruction amx?
+  match dtail]=, stail, src
+  exit
+end calminstruction
+
+---
+
+(source_file
+  (calminstruction_definition
+    name: (symbol_name
+      (identifier))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (match_statement
+            pattern: (match_pattern
+              (match_pattern_text)))))
+      (calm_statement
+        (calm_simple_statement
+          (instruction_statement
+            name: (symbol_name
+              (identifier))))))))
+
+==================================
+Phase 5: match pattern with semicolon token (retaincomments regime)
+==================================
+
+retaincomments
+calminstruction iev?
+  match ;comment, line
+end calminstruction
+
+---
+
+(source_file
+  (directive_statement
+    keyword: (directive_keyword))
+  (calminstruction_definition
+    name: (symbol_name
+      (identifier))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (match_statement
+            pattern: (match_pattern
+              (match_pattern_text))))))))
+
+==================================
+Phase 6: leading `?` forces identifier, enabling number-ish head
+:skip
+==================================
+
+?0 POINT
+
+---
+
+(source_file
+  (instruction_statement
+    name: (symbol_name
+      (identifier))
+    arguments: (instruction_argument_list
+      (instruction_argument
+        (instruction_argument_head
+          (identifier))))))
+
+==================================
+Phase 6: define LHS with `?` CI decorator
+:skip
+==================================
+
+define fastcall? fastcall
+
+---
+
+(source_file
+  (assignment_statement
+    name: (identifier)
+    operator: "define"
+    value: (argument_list
+      (argument
+        (argument_atom
+          (identifier))))))
+
+==================================
+Phase 6: iterate with paired-variable angle group
+:skip
+==================================
+
+iterate <fword,dword>, dword, word, pword, dword
+  dd 1
+end iterate
+
+---
+
+(source_file
+  (iterate_block
+    arguments: (argument_list
+      (argument
+        (angled_argument))
+      (argument
+        (argument_atom
+          (identifier)))
+      (argument
+        (argument_atom
+          (identifier)))
+      (argument
+        (argument_atom
+          (identifier)))
+      (argument
+        (argument_atom
+          (identifier))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (number_literal))))))))

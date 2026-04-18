@@ -1,0 +1,5471 @@
+{
+  "parse_summaries": [
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\@@.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 41,
+        "column": 11
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 174000
+      },
+      "bytes": 647
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\align.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 97,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 251400
+      },
+      "bytes": 2291
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\advapi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 535,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1269000
+      },
+      "bytes": 25256
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\comctl32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 81,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 191700
+      },
+      "bytes": 3776
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\comdlg32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 38,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 77700
+      },
+      "bytes": 1169
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\gdi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 419,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 954200
+      },
+      "bytes": 16694
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\kernel32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 883,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2052500
+      },
+      "bytes": 37856
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\shell32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 167,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 369800
+      },
+      "bytes": 5997
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\user32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 756,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1742000
+      },
+      "bytes": 29798
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\api\\wsock32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 85,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 192600
+      },
+      "bytes": 2982
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\dd.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 133,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 350400
+      },
+      "bytes": 2417
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\utf8.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 79,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 435100
+      },
+      "bytes": 2251
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1250.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 275800
+      },
+      "bytes": 1140
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1251.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 36,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 189600
+      },
+      "bytes": 853
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1252.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 34,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 146100
+      },
+      "bytes": 667
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1253.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 36,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 182300
+      },
+      "bytes": 811
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1254.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 39,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 187800
+      },
+      "bytes": 878
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1255.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 229200
+      },
+      "bytes": 1089
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1256.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 237200
+      },
+      "bytes": 1159
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1257.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 231100
+      },
+      "bytes": 1119
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win1258.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 229800
+      },
+      "bytes": 1129
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\encoding\\win874.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 34,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 143500
+      },
+      "bytes": 606
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\comctl32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1869,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 4101300
+      },
+      "bytes": 44470
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\comctl64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1899,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3863000
+      },
+      "bytes": 44820
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\comdlg32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 333,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 665500
+      },
+      "bytes": 9755
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\comdlg64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 343,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 683100
+      },
+      "bytes": 8511
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\gdi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 480,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 858800
+      },
+      "bytes": 9017
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\gdi64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 482,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 861000
+      },
+      "bytes": 9055
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\kernel32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 812,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1581200
+      },
+      "bytes": 21781
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\kernel64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 810,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1565800
+      },
+      "bytes": 21693
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\shell32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 127,
+        "column": 10
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 243500
+      },
+      "bytes": 3271
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\shell64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 134,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 263000
+      },
+      "bytes": 3336
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\user32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1934,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3725100
+      },
+      "bytes": 41840
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\user64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1956,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3593600
+      },
+      "bytes": 42107
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\equates\\wsock32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 124,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 235700
+      },
+      "bytes": 2199
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\fasm2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 9,
+        "column": 17
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 21000
+      },
+      "bytes": 176
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\fix.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 31,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 89100
+      },
+      "bytes": 544
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 387,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1457300
+      },
+      "bytes": 10996
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\coff.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 403,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1265200
+      },
+      "bytes": 9691
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\coffms.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 684,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2327900
+      },
+      "bytes": 23481
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\elf32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 573,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1879300
+      },
+      "bytes": 16414
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\elf64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 612,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2079000
+      },
+      "bytes": 17778
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\elfexe.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 322,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 829200
+      },
+      "bytes": 6939
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\macho.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1128,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3125000
+      },
+      "bytes": 27461
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\mz.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 146,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 454000
+      },
+      "bytes": 3435
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\format\\pe.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 999,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3257100
+      },
+      "bytes": 29174
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\irps.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 22,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 55900
+      },
+      "bytes": 351
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\3dnow.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 46,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 154800
+      },
+      "bytes": 1359
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\aes.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 58,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 200400
+      },
+      "bytes": 1579
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\amx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 162,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 441800
+      },
+      "bytes": 3540
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\avx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 4345,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 18358800
+      },
+      "bytes": 143617
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\bmi.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 290,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1078900
+      },
+      "bytes": 8522
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\cet.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 122,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 328500
+      },
+      "bytes": 2639
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\fpu.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 742,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1812300
+      },
+      "bytes": 17186
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\gfni.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 33,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 98800
+      },
+      "bytes": 821
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\kl.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 65,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 213200
+      },
+      "bytes": 1723
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\mmx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 164,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 498200
+      },
+      "bytes": 4579
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\mpx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 201,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 892900
+      },
+      "bytes": 6100
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\pclmulqdq.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 24,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 104800
+      },
+      "bytes": 815
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\sha.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 35,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 108900
+      },
+      "bytes": 869
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\sse.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 444,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1500200
+      },
+      "bytes": 12221
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\sse2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 579,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1985000
+      },
+      "bytes": 15548
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\sse3.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 84,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 292200
+      },
+      "bytes": 2196
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\sse4.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 278,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1110200
+      },
+      "bytes": 8491
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\uintr.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 22,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 58100
+      },
+      "bytes": 423
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\iset\\vmx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 90,
+        "column": 11
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 289200
+      },
+      "bytes": 2146
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\listing.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 155,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 378800
+      },
+      "bytes": 3240
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\com32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 54,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 187000
+      },
+      "bytes": 1009
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\com64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 51,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 156700
+      },
+      "bytes": 964
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\export.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 67,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 334600
+      },
+      "bytes": 1377
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\if.inc",
+      "successful": false,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 337,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1377600
+      },
+      "bytes": 5247
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\import32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 59,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 220700
+      },
+      "bytes": 1195
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\import64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 59,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 214600
+      },
+      "bytes": 1211
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\inline.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 89,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 225800
+      },
+      "bytes": 2116
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\proc32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 406,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1437300
+      },
+      "bytes": 7891
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\proc64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 550,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1909300
+      },
+      "bytes": 11722
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\resource.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 314,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1213800
+      },
+      "bytes": 6969
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\macro\\struct.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 456,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1216700
+      },
+      "bytes": 9895
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\advapi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 340,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 643000
+      },
+      "bytes": 9128
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\comctl32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 69,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 134800
+      },
+      "bytes": 1774
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\comdlg32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 18,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 34000
+      },
+      "bytes": 350
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\gdi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 319,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 603400
+      },
+      "bytes": 6944
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\kernel32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 557,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1078900
+      },
+      "bytes": 13347
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\shell32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 73,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 138000
+      },
+      "bytes": 1581
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\user32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 477,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 913100
+      },
+      "bytes": 10552
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\pcount\\wsock32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 70,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 132800
+      },
+      "bytes": 1358
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\times.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 31,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 76900
+      },
+      "bytes": 645
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win32a.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 33,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 81100
+      },
+      "bytes": 627
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win32ax.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 129600
+      },
+      "bytes": 1136
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win32axp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 115700
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win32w.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 33,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 72500
+      },
+      "bytes": 627
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win32wx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 125300
+      },
+      "bytes": 1136
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win32wxp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 112700
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win64a.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 35,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 73900
+      },
+      "bytes": 656
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win64ax.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 67,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 148000
+      },
+      "bytes": 1243
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win64axp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 110400
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win64w.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 35,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 73600
+      },
+      "bytes": 656
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win64wx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 67,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 134200
+      },
+      "bytes": 1251
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\win64wxp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 112100
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\x86-2.inc",
+      "successful": false,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 4401,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 13014300
+      },
+      "bytes": 111357
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasm2\\include\\xcalm.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 69,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 151400
+      },
+      "bytes": 1906
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\hello.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 70,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 173900
+      },
+      "bytes": 1709
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\hello_linux.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 27,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 55900
+      },
+      "bytes": 474
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 973,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 5649100
+      },
+      "bytes": 39901
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64_done.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 1373,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 9103900
+      },
+      "bytes": 61204
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64_float.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 744,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 4053600
+      },
+      "bytes": 28452
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64_group.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1044,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 4564500
+      },
+      "bytes": 33773
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64_ld_st_tb.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1027,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 4004500
+      },
+      "bytes": 30312
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64_parse.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 484,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1869000
+      },
+      "bytes": 11519
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\iset\\aarch64_sy.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 333,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1160100
+      },
+      "bytes": 7233
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\aarch64\\mixed.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 97,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 201600
+      },
+      "bytes": 2151
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\tar\\demo.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 21,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 45100
+      },
+      "bytes": 267
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\tar\\tar.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 70,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 215200
+      },
+      "bytes": 1351
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\tar\\zip.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 129,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 343600
+      },
+      "bytes": 2586
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\tar\\zipdemo.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 14,
+        "column": 11
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 24800
+      },
+      "bytes": 159
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\@@.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 39,
+        "column": 10
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 78700
+      },
+      "bytes": 632
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\align.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 97,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 234700
+      },
+      "bytes": 2283
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\inline.inc",
+      "successful": false,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 85,
+        "column": 18
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 222800
+      },
+      "bytes": 1955
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\listing.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 142,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 345300
+      },
+      "bytes": 3049
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\listing2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 140,
+        "column": 4
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 325600
+      },
+      "bytes": 3095
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\struct.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 64,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 161600
+      },
+      "bytes": 1293
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\utility\\xcalm.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 78,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 175600
+      },
+      "bytes": 2212
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\webassembly\\test.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 28,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 48600
+      },
+      "bytes": 294
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\webassembly\\wasm.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 242,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 791300
+      },
+      "bytes": 6835
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\webassembly\\wasmcode.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 83,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 338600
+      },
+      "bytes": 2265
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iev.alm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 82,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 228200
+      },
+      "bytes": 1791
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\3dnow.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 46,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 151500
+      },
+      "bytes": 1359
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\aes.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 58,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 196800
+      },
+      "bytes": 1579
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\amx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 156,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 394700
+      },
+      "bytes": 3426
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\avx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 4355,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 17290600
+      },
+      "bytes": 143744
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\bmi.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 290,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1052800
+      },
+      "bytes": 8522
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\cet.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 122,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 329800
+      },
+      "bytes": 2639
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\fpu.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 742,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1850700
+      },
+      "bytes": 17186
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\gfni.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 33,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 94700
+      },
+      "bytes": 821
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\mmx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 164,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 505100
+      },
+      "bytes": 4579
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\mpx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 196,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 885300
+      },
+      "bytes": 5963
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\pclmulqdq.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 24,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 104600
+      },
+      "bytes": 815
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\sse.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 444,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1512200
+      },
+      "bytes": 12221
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\sse2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 579,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1979500
+      },
+      "bytes": 15548
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\sse3.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 84,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 294400
+      },
+      "bytes": 2196
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\sse4.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 278,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1114400
+      },
+      "bytes": 8491
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\iset\\vmx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 72,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 226300
+      },
+      "bytes": 1634
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\test.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 21,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 66300
+      },
+      "bytes": 526
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86-2\\x86-2.inc",
+      "successful": false,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 4210,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 12274100
+      },
+      "bytes": 106576
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\dynamic\\elfsym.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 133,
+        "column": 11
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 293700
+      },
+      "bytes": 2320
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\dynamic\\hello.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 25,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 52200
+      },
+      "bytes": 357
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\dynamic\\hello64.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 25,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 49200
+      },
+      "bytes": 363
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\dynamic\\import32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 187800
+      },
+      "bytes": 1176
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\dynamic\\import64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 183400
+      },
+      "bytes": 1189
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\dynamic\\importx32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 178200
+      },
+      "bytes": 1176
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\x32\\hello_x32.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 23,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 52400
+      },
+      "bytes": 342
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\x32\\obj1.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 20,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 35300
+      },
+      "bytes": 260
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\linux\\x32\\obj2.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 19,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 39200
+      },
+      "bytes": 282
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\longmode\\basecode.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 188,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 444600
+      },
+      "bytes": 3969
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\longmode\\simple.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 91,
+        "column": 15
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 212300
+      },
+      "bytes": 1900
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\longmode\\test.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 19,
+        "column": 30
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 35800
+      },
+      "bytes": 242
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\demo_dynamic.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 29,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 64200
+      },
+      "bytes": 502
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\demo_dynamic64.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 33,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 63600
+      },
+      "bytes": 516
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\demo_syscall.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 51000
+      },
+      "bytes": 397
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\demo_syscall64.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 26,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 54100
+      },
+      "bytes": 510
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\msgdemo.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 26,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 42800
+      },
+      "bytes": 296
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\msgdemo64.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 22,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 35000
+      },
+      "bytes": 251
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\writemsg.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 26,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 48300
+      },
+      "bytes": 296
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\mach-o\\writemsg64.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 34,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 72700
+      },
+      "bytes": 524
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\ddraw\\ddraw.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 324,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 818300
+      },
+      "bytes": 6442
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\ddraw\\ddraw.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 424,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 840600
+      },
+      "bytes": 12288
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\ddraw\\gif87a.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 194,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 517600
+      },
+      "bytes": 3606
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\dialog\\dialog.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 128,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 453200
+      },
+      "bytes": 3886
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\dll\\errormsg.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 57,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 129400
+      },
+      "bytes": 1225
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\dll\\lasterr.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 24,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 46900
+      },
+      "bytes": 452
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\hello\\hello.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 18,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 33700
+      },
+      "bytes": 437
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\minipad\\minipad.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 204,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 568500
+      },
+      "bytes": 4951
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\opengl\\opengl.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 612,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1549700
+      },
+      "bytes": 19330
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\opengl\\opengl.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 2351,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 4713400
+      },
+      "bytes": 65340
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\quetannon\\quetannon.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 404,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1353300
+      },
+      "bytes": 10851
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\quetannon\\riched32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 118,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 288800
+      },
+      "bytes": 3913
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\template.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 70,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 180900
+      },
+      "bytes": 1517
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\usecom\\usecom.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 141,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 391600
+      },
+      "bytes": 3420
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\dll\\msgdemo.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 27,
+        "column": 29
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 49800
+      },
+      "bytes": 467
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\dll\\writemsg.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 44,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 98600
+      },
+      "bytes": 827
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\mandel\\ddraw64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 426,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 817900
+      },
+      "bytes": 12312
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\mandel\\mandel.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 320,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 777400
+      },
+      "bytes": 6285
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\opengl\\opengl.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 615,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1523400
+      },
+      "bytes": 19673
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\template.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 84,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 193800
+      },
+      "bytes": 1956
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\examples\\windows\\win64\\usecom\\usecom.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 143,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 387100
+      },
+      "bytes": 3465
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\advapi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 535,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1169800
+      },
+      "bytes": 25256
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\comctl32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 81,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 183700
+      },
+      "bytes": 3776
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\comdlg32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 38,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 71900
+      },
+      "bytes": 1169
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\gdi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 419,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 908800
+      },
+      "bytes": 16694
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\kernel32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 881,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1952300
+      },
+      "bytes": 37744
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\shell32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 167,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 346700
+      },
+      "bytes": 5997
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\user32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 756,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1649400
+      },
+      "bytes": 29798
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\api\\wsock32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 85,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 186000
+      },
+      "bytes": 2982
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\80186.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 383,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 885400
+      },
+      "bytes": 8777
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\80286.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 86,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 211900
+      },
+      "bytes": 2203
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\80287.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 15,
+        "column": 6
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 29400
+      },
+      "bytes": 262
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\80386.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 2738,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 7511100
+      },
+      "bytes": 69164
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\80387.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 157,
+        "column": 6
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 353200
+      },
+      "bytes": 3916
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\80486.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 138800
+      },
+      "bytes": 1463
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\8086.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1605,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3922400
+      },
+      "bytes": 36243
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\8087.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 554,
+        "column": 6
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1386200
+      },
+      "bytes": 13167
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\adx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 21,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 94300
+      },
+      "bytes": 594
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\aes.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 43,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 106700
+      },
+      "bytes": 991
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1266,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 4999400
+      },
+      "bytes": 40244
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 502,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1965000
+      },
+      "bytes": 16353
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 10,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 18000
+      },
+      "bytes": 179
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_4vnniw.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 11
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 105700
+      },
+      "bytes": 789
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_bitalg.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 29,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 94900
+      },
+      "bytes": 796
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_ifma.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 15,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 33800
+      },
+      "bytes": 279
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_vbmi.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 22,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 54900
+      },
+      "bytes": 523
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_vbmi2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 65,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 214200
+      },
+      "bytes": 1983
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_vnni.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 14,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 35900
+      },
+      "bytes": 299
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512_vpopcntdq.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 16,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 34700
+      },
+      "bytes": 313
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512bw.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 522,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2168100
+      },
+      "bytes": 17768
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512cd.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 29,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 84900
+      },
+      "bytes": 815
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512dq.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 463,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1752300
+      },
+      "bytes": 15408
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512er.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 39,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 152900
+      },
+      "bytes": 1245
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512f.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 2660,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 10322400
+      },
+      "bytes": 89738
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512pf.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 217300
+      },
+      "bytes": 1757
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\avx512vl.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 8,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 13600
+      },
+      "bytes": 76
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\bmi1.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 97,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 363600
+      },
+      "bytes": 2708
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\bmi2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 106,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 410200
+      },
+      "bytes": 3156
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\cet_ibt.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 7,
+        "column": 11
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 19000
+      },
+      "bytes": 120
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\cet_ss.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 106,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 286700
+      },
+      "bytes": 2388
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\f16c.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 29,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 124800
+      },
+      "bytes": 979
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\fma.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 95500
+      },
+      "bytes": 750
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\fsgsbase.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 24,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 72800
+      },
+      "bytes": 525
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\gfni.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 53,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 132200
+      },
+      "bytes": 1230
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\hle.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 16,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 23900
+      },
+      "bytes": 157
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\invpcid.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 15,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 60100
+      },
+      "bytes": 421
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\mmx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 149,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 437000
+      },
+      "bytes": 4222
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\movdir64b.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 23,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 83700
+      },
+      "bytes": 589
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\movdiri.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 19,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 69800
+      },
+      "bytes": 475
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\mpx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 196,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 836200
+      },
+      "bytes": 6164
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\pclmulqdq.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 14,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 38000
+      },
+      "bytes": 281
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\ptwrite.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 18,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 68300
+      },
+      "bytes": 438
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\rdrand.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 10,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 29100
+      },
+      "bytes": 217
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\rdseed.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 10,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 27700
+      },
+      "bytes": 217
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\rdtscp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 4,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 9300
+      },
+      "bytes": 44
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\rtm.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 39,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 149700
+      },
+      "bytes": 792
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\smx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 4,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 8600
+      },
+      "bytes": 41
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\sse.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 432,
+        "column": 6
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1412000
+      },
+      "bytes": 12405
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\sse2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 602,
+        "column": 6
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2031900
+      },
+      "bytes": 17256
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\sse3.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 72,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 244800
+      },
+      "bytes": 1650
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\sse4.1.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 204,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 839600
+      },
+      "bytes": 6568
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\sse4.2.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 54,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 189900
+      },
+      "bytes": 1467
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\ssse3.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 26,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 112800
+      },
+      "bytes": 841
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\vaes.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 109900
+      },
+      "bytes": 964
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\vmx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 65,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 205900
+      },
+      "bytes": 1535
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\vpclmulqdq.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 32,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 113800
+      },
+      "bytes": 899
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\ext\\xsave.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 35,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 83500
+      },
+      "bytes": 637
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\p5.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 37,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 85200
+      },
+      "bytes": 792
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\p6.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 62,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 212500
+      },
+      "bytes": 1780
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\cpu\\x64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 3509,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 9874500
+      },
+      "bytes": 90187
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\utf8.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 124,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 493000
+      },
+      "bytes": 3133
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1250.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 82,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 337200
+      },
+      "bytes": 2022
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1251.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 81,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 286800
+      },
+      "bytes": 1735
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1252.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 79,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 243200
+      },
+      "bytes": 1549
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1253.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 81,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 270800
+      },
+      "bytes": 1693
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1254.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 84,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 287600
+      },
+      "bytes": 1760
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1255.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 82,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 329100
+      },
+      "bytes": 1971
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1256.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 82,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 331800
+      },
+      "bytes": 2041
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1257.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 82,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 329900
+      },
+      "bytes": 2001
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win1258.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 82,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 328900
+      },
+      "bytes": 2011
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\encoding\\win874.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 79,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 241000
+      },
+      "bytes": 1488
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\comctl32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1869,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3642600
+      },
+      "bytes": 44470
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\comctl64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1892,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3747700
+      },
+      "bytes": 44742
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\comdlg32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 333,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 639800
+      },
+      "bytes": 9755
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\comdlg64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 342,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 642700
+      },
+      "bytes": 8502
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\gdi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 480,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 784900
+      },
+      "bytes": 9017
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\gdi64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 481,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 786100
+      },
+      "bytes": 9039
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\kernel32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 812,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1494900
+      },
+      "bytes": 21781
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\kernel64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 808,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1485000
+      },
+      "bytes": 21661
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\shell32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 127,
+        "column": 10
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 232400
+      },
+      "bytes": 3271
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\shell64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 134,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 242900
+      },
+      "bytes": 3336
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\user32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1934,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3324800
+      },
+      "bytes": 41840
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\user64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1955,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3396800
+      },
+      "bytes": 42093
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\equates\\wsock32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 124,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 215600
+      },
+      "bytes": 2199
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\coff.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 481,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1414100
+      },
+      "bytes": 11382
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\coffms.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 765,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2437200
+      },
+      "bytes": 25200
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\elf32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 651,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2007700
+      },
+      "bytes": 18103
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\elf64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 683,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 2167600
+      },
+      "bytes": 19293
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\elfexe.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 327,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 808600
+      },
+      "bytes": 7103
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\format.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 352,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1266400
+      },
+      "bytes": 10534
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\macho.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1186,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3203700
+      },
+      "bytes": 28786
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\mz.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 220,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 621300
+      },
+      "bytes": 5087
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\format\\pe.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 1080,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 3310800
+      },
+      "bytes": 31136
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\@@.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 13,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 29900
+      },
+      "bytes": 149
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\com32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 54,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 181000
+      },
+      "bytes": 1009
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\com64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 51,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 149800
+      },
+      "bytes": 964
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\export.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 67,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 314200
+      },
+      "bytes": 1377
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\if.inc",
+      "successful": false,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 337,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1328300
+      },
+      "bytes": 5246
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\import32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 59,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 224700
+      },
+      "bytes": 1195
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\import64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 59,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 211200
+      },
+      "bytes": 1211
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\proc32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 395,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1374800
+      },
+      "bytes": 7642
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\proc64.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 506,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1812900
+      },
+      "bytes": 10738
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\resource.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 314,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1160900
+      },
+      "bytes": 6969
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\macro\\struct.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 450,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 1115900
+      },
+      "bytes": 9598
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\advapi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 340,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 611400
+      },
+      "bytes": 9128
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\comctl32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 69,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 122900
+      },
+      "bytes": 1774
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\comdlg32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 18,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 30800
+      },
+      "bytes": 350
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\gdi32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 319,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 562200
+      },
+      "bytes": 6944
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\kernel32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 557,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 994000
+      },
+      "bytes": 13347
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\shell32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 73,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 128300
+      },
+      "bytes": 1581
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\user32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 477,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 841300
+      },
+      "bytes": 10552
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\pcount\\wsock32.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 70,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 122800
+      },
+      "bytes": 1358
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win32a.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 38,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 81900
+      },
+      "bytes": 713
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win32ax.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 61,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 117400
+      },
+      "bytes": 1129
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win32axp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 110100
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win32w.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 38,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 82500
+      },
+      "bytes": 713
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win32wx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 61,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 116000
+      },
+      "bytes": 1129
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win32wxp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 106400
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win64a.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 40,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 80500
+      },
+      "bytes": 742
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win64ax.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 66,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 134000
+      },
+      "bytes": 1236
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win64axp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 106900
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win64w.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 40,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 79000
+      },
+      "bytes": 742
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win64wx.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 66,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 137900
+      },
+      "bytes": 1236
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\include\\win64wxp.inc",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 30,
+        "column": 9
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 105400
+      },
+      "bytes": 810
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\projects\\calculator\\calculator.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 1
+      },
+      "end": {
+        "row": 318,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 837500
+      },
+      "bytes": 6571
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\projects\\challenger\\challenger.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 1736,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 5120200
+      },
+      "bytes": 42122
+    },
+    {
+      "file": "C:\\git\\~tgrysztar\\fasmg\\packages\\x86\\projects\\tetros\\tetros.asm",
+      "successful": true,
+      "start": {
+        "row": 0,
+        "column": 0
+      },
+      "end": {
+        "row": 337,
+        "column": 0
+      },
+      "duration": {
+        "secs": 0,
+        "nanos": 731900
+      },
+      "bytes": 4988
+    }
+  ],
+  "cumulative_stats": {
+    "successful_parses": 316,
+    "total_parses": 321,
+    "total_bytes": 2996818,
+    "total_duration": {
+      "secs": 0,
+      "nanos": 321328800
+    }
+  },
+  "source_count": 321
+}

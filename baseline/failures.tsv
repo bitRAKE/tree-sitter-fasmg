@@ -1,0 +1,5 @@
+C:\git\~tgrysztar\fasm2\include\macro\if.inc                                  	Parse:    1.38 ms	  3808 bytes/ms	(ERROR [110, 3] - [129, 15])
+C:\git\~tgrysztar\fasm2\include\x86-2.inc                                     	Parse:   13.01 ms	  8556 bytes/ms	(ERROR [75, 2] - [86, 0])
+C:\git\~tgrysztar\fasmg\packages\utility\inline.inc                           	Parse:    0.22 ms	  8774 bytes/ms	(ERROR [31, 1] - [31, 10])
+C:\git\~tgrysztar\fasmg\packages\x86-2\x86-2.inc                              	Parse:   12.27 ms	  8682 bytes/ms	(ERROR [75, 2] - [86, 0])
+C:\git\~tgrysztar\fasmg\packages\x86\include\macro\if.inc                     	Parse:    1.33 ms	  3949 bytes/ms	(ERROR [110, 3] - [129, 15])

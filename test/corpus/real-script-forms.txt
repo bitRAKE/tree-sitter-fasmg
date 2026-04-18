@@ -1,0 +1,124 @@
+==================================
+Real script forms
+==================================
+
+calminstruction (target) AreaContent area*
+  local string
+end calminstruction
+
+match =PARAMS,PARAMS
+  display 10
+else match Q=,S=,I,PARAMS
+  file_gather <'states = ',`Q,' symbols = ',`S,' index = ',`I>, <IndexForm Q,S,I>
+end match
+
+if % = 1
+  _, "file name: ", ico
+end if
+
+iterate <t,h>, ext, hdrpart
+  break
+end iterate
+
+---
+
+(source_file
+  (calminstruction_definition
+    target: (calm_target
+      (identifier))
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (directive_statement
+            keyword: (directive_keyword)
+            arguments: (argument_list
+              (argument
+                (argument_atom
+                  (word_operator)))))))))
+  (match_block
+    pattern: (match_pattern
+      (argument_list
+        (argument
+          (argument_atom
+            (sigil_token)))
+        (argument
+          (argument_atom
+            (identifier)))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (number_literal))))))
+    else_match_clauses: (else_match_clause
+      pattern: (match_pattern
+        (argument_list
+          (argument
+            (argument_atom
+              (identifier))
+            (argument_atom
+              (operator_token)))
+          (argument
+            (argument_atom
+              (identifier))
+            (argument_atom
+              (operator_token)))
+          (argument
+            (argument_atom
+              (identifier)))
+          (argument
+            (argument_atom
+              (identifier)))))
+      body: (block_body
+        (instruction_statement
+          name: (symbol_name
+            (identifier))
+          arguments: (instruction_argument_list
+            (instruction_argument
+              (angled_argument
+                (angled_text_fragment)))
+            (argument
+              (angled_argument
+                (angled_text_fragment))))))))
+  (if_block
+    condition: (argument_list
+      (argument
+        (argument_atom
+          (built_in_symbol))
+        (argument_atom
+          (operator_token))
+        (argument_atom
+          (number_literal))))
+    body: (block_body
+      (instruction_statement
+        name: (symbol_name
+          (identifier))
+        arguments: (comma_prefixed_argument_list
+          (argument_list
+            (argument
+              (argument_atom
+                (string_literal)))
+            (argument
+              (argument_atom
+                (identifier))))))))
+  (iterate_block
+    arguments: (argument_list
+      (argument
+        (angled_argument
+          (angled_text_fragment)))
+      (argument
+        (argument_atom
+          (identifier)))
+      (argument
+        (argument_atom
+          (identifier))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)))))

@@ -1,0 +1,44 @@
+==================================
+Literals, labels, and stacked symbols
+==================================
+
+entry:
+answer = 42
+hex_value = 0x2A
+message = "hello"
+restore answer
+purge answer
+
+---
+
+(source_file
+  (labeled_statement
+    (label_definition
+      name: (symbol_name
+        (identifier))))
+  (assignment_statement
+    name: (identifier)
+    value: (argument_list
+      (argument
+        (argument_atom
+          (number_literal)))))
+  (assignment_statement
+    name: (identifier)
+    value: (argument_list
+      (argument
+        (argument_atom
+          (number_literal)))))
+  (assignment_statement
+    name: (identifier)
+    value: (argument_list
+      (argument
+        (argument_atom
+          (string_literal)))))
+  (restore_statement
+    names: (name_list
+      (symbol_name
+        (identifier))))
+  (purge_statement
+    names: (name_list
+      (symbol_name
+        (identifier)))))

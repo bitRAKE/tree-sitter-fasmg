@@ -1,0 +1,44 @@
+==================================
+Macro and CALM block structure
+==================================
+
+macro emit_message
+  .loop:
+  restore byte
+end macro
+
+calminstruction walk_tokens
+  start:
+  purge restore
+end calminstruction
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (labeled_statement
+        (label_definition
+          name: (symbol_name
+            (identifier))))
+      (restore_statement
+        names: (name_list
+          (symbol_name
+            (identifier))))))
+  (calminstruction_definition
+    name: (symbol_name
+      (identifier))
+    body: (calm_block_body
+      (calm_statement
+        (labeled_calm_statement
+          (label_definition
+            name: (symbol_name
+              (identifier)))))
+      (calm_statement
+        (calm_simple_statement
+          (purge_statement
+            names: (name_list
+              (symbol_name
+                (identifier)))))))))

@@ -1,0 +1,293 @@
+==================================
+Phase 7: free_begin_clause for namespace in macro body
+==================================
+
+macro struct? name
+  namespace .
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (free_begin_clause
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))))))))
+
+==================================
+Phase 7: free_begin_clause for if in macro body
+==================================
+
+macro checker arg
+  if arg
+  namespace .
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (free_begin_clause
+        condition: (argument_list
+          (argument
+            (argument_atom
+              (identifier)))))
+      (free_begin_clause
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))))))))
+
+==================================
+Phase 7: full namespace_block still wins when closer is present
+==================================
+
+macro enclosed
+  namespace X
+    dd 1
+  end namespace
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (namespace_block
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))))
+        body: (block_body
+          (directive_statement
+            keyword: (directive_keyword)
+            arguments: (argument_list
+              (argument
+                (argument_atom
+                  (number_literal))))))))))
+
+==================================
+Phase 8: struc with calm_target (paren-name form)
+==================================
+
+struc (v) fword? value
+  dd value
+end struc
+
+---
+
+(source_file
+  (struc_definition
+    target: (calm_target
+      (identifier))
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))))))))
+
+==================================
+Phase 9: stray closing bracket as argument atom
+==================================
+
+foo dtail]
+
+---
+
+(source_file
+  (instruction_statement
+    name: (symbol_name
+      (identifier))
+    arguments: (instruction_argument_list
+      (instruction_argument
+        (instruction_argument_head
+          (identifier))
+        (argument_atom
+          (stray_bracket))))))
+
+==================================
+Phase 9: stray closing paren and brace as argument atoms
+==================================
+
+foo a), b}
+
+---
+
+(source_file
+  (instruction_statement
+    name: (symbol_name
+      (identifier))
+    arguments: (instruction_argument_list
+      (instruction_argument
+        (instruction_argument_head
+          (identifier))
+        (argument_atom
+          (stray_bracket)))
+      (argument
+        (argument_atom
+          (identifier))
+        (argument_atom
+          (stray_bracket))))))
+
+==================================
+Phase 9: balanced bracketed_argument still wins over stray_bracket
+==================================
+
+foo [x]
+
+---
+
+(source_file
+  (instruction_statement
+    name: (symbol_name
+      (identifier))
+    arguments: (instruction_argument_list
+      (instruction_argument
+        (instruction_argument_head
+          (bracketed_argument
+            (argument_list
+              (argument
+                (argument_atom
+                  (identifier))))))))))
+
+==================================
+Phase 10: user-defined end?. pair — struct/ends (both halves)
+==================================
+
+macro struct? definition&
+    esc struc definition
+    label . : .%top - .
+    namespace .
+end macro
+
+macro end?.struct?!
+    %top:
+    end namespace
+    esc end struc
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    parameters: (parameter_list
+      (parameter
+        name: (symbol_name
+          (identifier))))
+    body: (block_body
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (word_operator))
+            (argument_atom
+              (identifier)))))
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))
+            (argument_atom
+              (operator_token))
+            (argument_atom
+              (identifier))
+            (argument_atom
+              (operator_token))
+            (argument_atom
+              (identifier)))))
+      (free_begin_clause
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier)))))))
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (labeled_statement
+        (label_definition
+          name: (symbol_name
+            (identifier))))
+      (free_end_clause)
+      (directive_statement
+        keyword: (directive_keyword)
+        arguments: (argument_list
+          (argument
+            (argument_atom
+              (identifier))
+            (argument_atom
+              (word_operator))))))))
+
+==================================
+Phase 10: free_end_clause for end namespace in peer body
+==================================
+
+macro end?.struct?!
+  end namespace
+end macro
+
+---
+
+(source_file
+  (macro_definition
+    name: (symbol_name
+      (identifier))
+    body: (block_body
+      (free_end_clause))))
+
+==================================
+Phase 5 (scanner): match with unclosed opener falls back to text
+==================================
+
+calminstruction amx?
+  match (x, buffer
+  exit
+end calminstruction
+
+---
+
+(source_file
+  (calminstruction_definition
+    name: (symbol_name
+      (identifier))
+    body: (calm_block_body
+      (calm_statement
+        (calm_simple_statement
+          (match_statement
+            pattern: (match_pattern
+              (match_pattern_text)))))
+      (calm_statement
+        (calm_simple_statement
+          (instruction_statement
+            name: (symbol_name
+              (identifier))))))))

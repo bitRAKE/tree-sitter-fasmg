@@ -1,0 +1,63 @@
+{
+  "nameCharClass": "[^\\s+\\-/*=<>()\\[\\]{}:?!,.|&~`;\\\\]",
+  "numberPatterns": [
+    {
+      "comment": "Hex 0x... \u2014 lowercase x ONLY. Separators allowed anywhere after 0x.",
+      "regex": "(?<![\\w.#])0x[0-9A-Fa-f_']+",
+      "scopeSuffix": "hex"
+    },
+    {
+      "comment": "Hex $... \u2014 first char after $ MUST be a hex digit.",
+      "regex": "(?<![\\w.#])\\$[0-9A-Fa-f][0-9A-Fa-f_']*",
+      "scopeSuffix": "hex"
+    },
+    {
+      "comment": "Hex with h/H suffix. Must start with 0-9.",
+      "regex": "(?<![\\w.#])[0-9][0-9A-Fa-f_']*[hH]\\b",
+      "scopeSuffix": "hex"
+    },
+    {
+      "comment": "Binary with b/B suffix.",
+      "regex": "(?<![\\w.#])[01][01_']*[bB]\\b",
+      "scopeSuffix": "binary"
+    },
+    {
+      "comment": "Octal with o/O/q/Q suffix.",
+      "regex": "(?<![\\w.#])[0-7][0-7_']*[oOqQ]\\b",
+      "scopeSuffix": "octal"
+    },
+    {
+      "comment": "Float with dot. Exponent and f suffix are mutually exclusive.",
+      "regex": "(?<![\\w.#])[0-9][0-9_']*\\.[0-9][0-9_']*(?:(?:[eE][+-]?[0-9_']*[0-9][0-9_']*)|[fF])?\\b",
+      "scopeSuffix": "float"
+    },
+    {
+      "comment": "Float without dot, with exponent (no f suffix allowed).",
+      "regex": "(?<![\\w.#])[0-9][0-9_']*[eE][+-]?[0-9_']*[0-9][0-9_']*\\b",
+      "scopeSuffix": "float"
+    },
+    {
+      "comment": "Float without dot or exponent, with mandatory f suffix.",
+      "regex": "(?<![\\w.#])[0-9][0-9_']*[fF]\\b",
+      "scopeSuffix": "float"
+    },
+    {
+      "comment": "Decimal with optional d/D suffix.",
+      "regex": "(?<![\\w.#])[0-9][0-9_']*[dD]?\\b",
+      "scopeSuffix": "decimal"
+    }
+  ],
+  "specialChars": "+-/*=<>()[]{}:?!,.|&~#`\\\\",
+  "stringRules": [
+    {
+      "escape": "''",
+      "quote": "'",
+      "scope": "string.quoted.single.fasmg"
+    },
+    {
+      "escape": "\"\"",
+      "quote": "\"",
+      "scope": "string.quoted.double.fasmg"
+    }
+  ]
+}

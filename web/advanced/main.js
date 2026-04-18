@@ -36,6 +36,8 @@ import {
   findSpanBySource,
   findSpanByTree,
 } from "./cm6/tree-string.js";
+import { loadSample, loadSampleManifest } from "./samples.js";
+import { loadFailuresTsv, parseFailuresTsv } from "./baseline.js";
 
 const STORAGE_KEYS = {
   editorTab: "fasmg-advanced-editor-tab",
@@ -51,6 +53,7 @@ const OUTPUT_CAPTIONS = {
   "output-captures-panel": "Highlight-query captures and matched source ranges",
   "output-diagnostics-panel": "Syntax recovery nodes and query diagnostics",
   "output-adhoc-panel": "Ad-hoc query captures — independent of source decorations",
+  "output-baseline-panel": "Corpus baseline failures from baseline/failures.tsv",
   "output-runtime-panel": "Runtime loader and workspace status",
 };
 
@@ -123,6 +126,8 @@ const elements = {
   adhocStatus: document.querySelector("#adhoc-status"),
   adhocCaptures: document.querySelector("#adhoc-captures-output"),
   treeHost: document.querySelector("#tree-editor"),
+  samplesSelect: document.querySelector("#samples-select"),
+  baselineOutput: document.querySelector("#baseline-output"),
 };
 
 let sourceView = null;
@@ -133,6 +138,8 @@ let defaultQueryText = "";
 let localsQueryText = "";
 let lastTreeString = "";
 let treeSpans = [];
+let sampleEntries = [];
+let baselineLoaded = false;
 
 // Re-entrance guards for cross-editor selection sync.
 let syncing = false;
@@ -159,6 +166,8 @@ async function bootstrap() {
   bindTabs();
   bindSplitter();
   bindResetQuery();
+  bindSamplesSelect();
+  void populateSamples();
 
   const storedSource = readStorage(STORAGE_KEYS.source);
   const storedQuery = readStorage(STORAGE_KEYS.query);
@@ -675,6 +684,7 @@ function activateTab(group, targetId) {
     writeStorage(STORAGE_KEYS.outputTab, targetId);
     queueMicrotask(() => {
       if (targetId === "output-tree-panel") treeView?.requestMeasure();
+      if (targetId === "output-baseline-panel") void ensureBaselineLoaded();
     });
   }
 }
@@ -747,6 +757,187 @@ function bindResetQuery() {
       },
     });
   });
+}
+
+// --- samples dropdown -----------------------------------------------
+
+async function populateSamples() {
+  if (!elements.samplesSelect) return;
+  try {
+    sampleEntries = await loadSampleManifest();
+  } catch (error) {
+    console.warn("samples manifest failed:", error);
+    elements.samplesSelect.disabled = true;
+    return;
+  }
+  for (const [index, entry] of sampleEntries.entries()) {
+    const option = document.createElement("option");
+    option.value = String(index);
+    option.textContent = `${entry.source === "remote" ? "⇣ " : ""}${entry.label}`;
+    elements.samplesSelect.append(option);
+  }
+}
+
+function bindSamplesSelect() {
+  if (!elements.samplesSelect) return;
+  elements.samplesSelect.addEventListener("change", async () => {
+    const index = Number(elements.samplesSelect.value);
+    const entry = sampleEntries[index];
+    if (!entry || !sourceView) return;
+
+    setRuntimeStatus("loading", `Loading ${entry.label}…`);
+    try {
+      const { text, from, warning } = await loadSample(entry);
+      sourceView.dispatch({
+        changes: {
+          from: 0,
+          to: sourceView.state.doc.length,
+          insert: text,
+        },
+      });
+      writeStorage(STORAGE_KEYS.source, text);
+      const provenance = from === "cache" ? " (cached)" : "";
+      setRuntimeStatus("ready", `Loaded ${entry.label}${provenance}`);
+      if (warning) {
+        elements.runtimeLog.textContent = warning;
+      } else {
+        elements.runtimeLog.textContent = `Loaded sample from ${from}.`;
+      }
+    } catch (error) {
+      setRuntimeStatus("error", `Sample load failed: ${error.message}`);
+      elements.runtimeLog.textContent = String(error.stack || error);
+    }
+    // reset to placeholder so re-selecting the same entry fires again
+    elements.samplesSelect.value = "";
+  });
+}
+
+// --- baseline browser -----------------------------------------------
+
+async function ensureBaselineLoaded() {
+  if (baselineLoaded) return;
+  baselineLoaded = true;
+  elements.baselineOutput.innerHTML =
+    '<p class="status-pill">Loading baseline/failures.tsv…</p>';
+  try {
+    const text = await loadFailuresTsv();
+    const entries = parseFailuresTsv(text);
+    renderBaseline(entries);
+  } catch (error) {
+    elements.baselineOutput.innerHTML = "";
+    const warn = document.createElement("p");
+    warn.className = "status-pill";
+    warn.dataset.kind = "error";
+    warn.textContent = `Could not load baseline/failures.tsv: ${error.message}`;
+    elements.baselineOutput.append(warn);
+  }
+}
+
+function renderBaseline(entries) {
+  const host = elements.baselineOutput;
+  host.innerHTML = "";
+
+  if (entries.length === 0) {
+    host.innerHTML =
+      '<p class="status-pill">No failures in baseline. Regenerate with scripts/corpus-baseline.sh.</p>';
+    return;
+  }
+
+  const summary = document.createElement("p");
+  summary.className = "status-pill";
+  summary.textContent = `${entries.length} corpus file${entries.length === 1 ? "" : "s"} currently fail to parse cleanly.`;
+  host.append(summary);
+
+  const table = document.createElement("table");
+  table.className = "capture-table baseline-table";
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th scope="col">Path</th>
+        <th scope="col">Error</th>
+        <th scope="col">Remote</th>
+      </tr>
+    </thead>
+  `;
+
+  const tbody = document.createElement("tbody");
+  for (const entry of entries) {
+    const row = document.createElement("tr");
+
+    const pathCell = document.createElement("td");
+    pathCell.className = "capture-col-text";
+    pathCell.textContent = entry.path;
+    row.append(pathCell);
+
+    const errorCell = document.createElement("td");
+    errorCell.className = "capture-col-range";
+    errorCell.textContent = entry.errorStart
+      ? `${entry.errorKind} ${entry.errorStart.row + 1}:${entry.errorStart.column + 1} - ${entry.errorEnd.row + 1}:${entry.errorEnd.column + 1}`
+      : "—";
+    row.append(errorCell);
+
+    const remoteCell = document.createElement("td");
+    remoteCell.className = "capture-col-name";
+    if (entry.remoteUrl) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "toolbar-button toolbar-button-subtle";
+      button.textContent = "Load";
+      button.title = entry.remoteUrl;
+      button.addEventListener("click", () => loadBaselineRemote(entry));
+      remoteCell.append(button);
+    } else {
+      remoteCell.textContent = "—";
+    }
+    row.append(remoteCell);
+
+    tbody.append(row);
+  }
+  table.append(tbody);
+  host.append(table);
+}
+
+async function loadBaselineRemote(entry) {
+  if (!sourceView || !entry.remoteUrl) return;
+  setRuntimeStatus("loading", `Fetching ${entry.path}…`);
+  try {
+    const { text, from, warning } = await loadSample({
+      label: entry.path,
+      source: "remote",
+      url: entry.remoteUrl,
+    });
+    sourceView.dispatch({
+      changes: {
+        from: 0,
+        to: sourceView.state.doc.length,
+        insert: text,
+      },
+    });
+    writeStorage(STORAGE_KEYS.source, text);
+    const provenance = from === "cache" ? " (cached)" : "";
+    setRuntimeStatus("ready", `Loaded baseline file${provenance}`);
+    elements.runtimeLog.textContent = warning
+      ? warning
+      : `Loaded ${entry.remoteUrl}`;
+
+    if (entry.errorStart) {
+      queueMicrotask(() => {
+        const doc = sourceView.state.doc;
+        const line = doc.line(
+          Math.min(Math.max(1, entry.errorStart.row + 1), doc.lines),
+        );
+        const from = Math.min(line.from + entry.errorStart.column, line.to);
+        sourceView.focus();
+        sourceView.dispatch({
+          selection: { anchor: from, head: from },
+          scrollIntoView: true,
+        });
+      });
+    }
+  } catch (error) {
+    setRuntimeStatus("error", `Remote fetch failed: ${error.message}`);
+    elements.runtimeLog.textContent = String(error.stack || error);
+  }
 }
 
 // --- helpers --------------------------------------------------------

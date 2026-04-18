@@ -39,6 +39,12 @@
         </div>
 
         <div class="topbar-group topbar-controls">
+          <label class="toolbar-select" for="samples-select">
+            <span>Load sample</span>
+            <select id="samples-select">
+              <option value="" disabled selected>Choose…</option>
+            </select>
+          </label>
           <button type="button" class="toolbar-button" id="reset-query">Reset Query</button>
         </div>
 
@@ -181,6 +187,17 @@
                 class="tab-button"
                 role="tab"
                 aria-selected="false"
+                aria-controls="output-baseline-panel"
+                id="output-baseline-tab"
+                data-tab-group="output"
+                data-tab-target="output-baseline-panel">
+                Baseline
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
                 aria-controls="output-runtime-panel"
                 id="output-runtime-tab"
                 data-tab-group="output"
@@ -226,6 +243,15 @@
             aria-labelledby="output-adhoc-tab"
             hidden>
             <div id="adhoc-captures-output" class="output-surface capture-surface"></div>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="output-baseline-panel"
+            aria-labelledby="output-baseline-tab"
+            hidden>
+            <div id="baseline-output" class="output-surface baseline-surface"></div>
           </section>
 
           <section

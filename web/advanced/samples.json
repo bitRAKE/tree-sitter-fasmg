@@ -1,0 +1,20 @@
+[
+  {
+    "label": "Quine — virtual + repeat (parseable)",
+    "source": "local",
+    "path": "./samples/quine-virtual.fasm",
+    "note": "Positive-control quine: uses only virtual, db, load, repeat, if/else if/else. Should fold, highlight, and parse clean."
+  },
+  {
+    "label": "Quine — calminstruction recursion (adversarial)",
+    "source": "local",
+    "path": "./samples/quine-calminstruction.fasm",
+    "note": "Stress-test quine: CALM parameter sigils (?!n&), take/jno/emit/assemble/stringify, label inside CALM body, recursive self-invocation. Expected to surface ERROR nodes."
+  },
+  {
+    "label": "fasm2 x86-2.inc (master, remote)",
+    "source": "remote",
+    "url": "https://raw.githubusercontent.com/tgrysztar/fasm2/master/include/x86-2.inc",
+    "note": "Builder-builder pattern; likely unparseable by the current grammar. Fetches latest from upstream; loader lands in Phase 6."
+  }
+]

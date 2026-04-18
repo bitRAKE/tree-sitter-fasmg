@@ -48,6 +48,15 @@
         "@codemirror/language",
         "@lezer/common"
       ]
+    },
+    "@codemirror/lint": {
+      "version": "6.5.0",
+      "sha256": "6495ba01228a990a8fce4a9d51bd6bb7a6e90b5fab8fa5786f5cf654bcba83bf",
+      "external": [
+        "@codemirror/state",
+        "@codemirror/view",
+        "@lezer/common"
+      ]
     }
   }
 }

@@ -281,6 +281,10 @@ code {
   border-bottom: 1px solid rgba(74, 77, 85, 0.45);
 }
 
+.capture-table tbody tr {
+  cursor: pointer;
+}
+
 .capture-table tbody tr:hover {
   background: rgba(121, 192, 255, 0.06);
 }
@@ -316,6 +320,12 @@ code {
   padding: 10px;
   border: 1px solid var(--panel-border);
   background: #202226;
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.diagnostic-item:hover {
+  border-color: var(--accent);
 }
 
 .diagnostic-item.ok { border-color: rgba(126, 231, 135, 0.35); color: var(--success); }
@@ -420,6 +430,40 @@ code {
  * sexp-language.js assigns @lezer/highlight tags to node types and   *
  * exports sexpHighlightStyle mapping each tag to an explicit         *
  * .tok-<tagName> class. Colors match the fasmg source palette.       */
+
+/* --- @codemirror/lint skin --------------------------------------- */
+
+.cm-lintRange-error { background: none; text-decoration-color: var(--danger); }
+.cm-lintRange-warning { background: none; text-decoration-color: var(--warning); }
+.cm-lintRange-info { background: none; text-decoration-color: var(--accent); }
+
+.cm-gutter-lint { background: #181a1d; }
+.cm-gutter-lint .cm-gutterElement { cursor: pointer; }
+.cm-lintGutter-marker-error,
+.cm-lintGutter-marker-warning,
+.cm-lintGutter-marker-info {
+  margin: auto;
+}
+
+.cm-panel.cm-panel-lint {
+  background: var(--panel);
+  border-top: 1px solid var(--panel-border);
+  color: var(--text);
+}
+
+.cm-panel.cm-panel-lint ul li { border-color: var(--panel-border); }
+.cm-panel.cm-panel-lint button { color: var(--text-soft); }
+.cm-panel.cm-panel-lint [aria-current] { background: var(--accent-soft); }
+
+.cm-tooltip.cm-tooltip-lint {
+  background: var(--panel);
+  border: 1px solid var(--panel-border-strong);
+  color: var(--text);
+}
+.cm-tooltip-lint .cm-diagnostic { padding: 6px 8px; }
+.cm-tooltip-lint .cm-diagnostic-error { border-left: 3px solid var(--danger); }
+.cm-tooltip-lint .cm-diagnostic-warning { border-left: 3px solid var(--warning); }
+.cm-tooltip-lint .cm-diagnostic-info { border-left: 3px solid var(--accent); }
 
 .tok-typeName { color: #79c0ff; font-weight: 700; }
 .tok-propertyName { color: #d2a8ff; }

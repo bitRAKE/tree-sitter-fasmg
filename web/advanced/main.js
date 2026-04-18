@@ -9,13 +9,25 @@ import {
 import { EditorState } from "@codemirror/state";
 import { defaultKeymap, history, historyKeymap } from "@codemirror/commands";
 
+import { inspectFasmgSource, loadFasmgQueries } from "./../shared/fasmg-web.js";
+
 import {
+  fasmgCapturesField,
   fasmgHighlight,
-  fasmgQueryField,
-  setFasmgQueryEffect,
-  loadDefaultFasmgQueries,
+  setFasmgCapturesEffect,
 } from "./cm6/highlight.js";
+import {
+  fasmgLanguageSupport,
+  initFasmgLanguage,
+  parseFasmgSource,
+} from "./cm6/language.js";
+import { applyFasmgDiagnostics, fasmgLintGutter } from "./cm6/diagnostics.js";
 import { sexpExtensions } from "./cm6/sexp-language.js";
+import {
+  buildTreeString,
+  findSpanBySource,
+  findSpanByTree,
+} from "./cm6/tree-string.js";
 
 const STORAGE_KEYS = {
   editorTab: "fasmg-advanced-editor-tab",
@@ -26,18 +38,19 @@ const STORAGE_KEYS = {
 };
 
 const OUTPUT_CAPTIONS = {
-  "output-tree-panel": "Concrete syntax tree from the browser-side parser",
+  "output-tree-panel": "Tree — click to select source; source cursor selects here",
   "output-captures-panel": "Query captures and matched source ranges",
   "output-diagnostics-panel": "Syntax recovery nodes and query diagnostics",
   "output-runtime-panel": "Runtime loader and workspace status",
 };
 
 const EDITOR_CAPTIONS = {
-  "editor-source-panel": "fasmg source — live highlighting",
+  "editor-source-panel": "fasmg source — live highlighting + lint + click-sync",
   "editor-query-panel": "highlight query — edits retarget source decorations",
 };
 
 const DEFAULT_SOURCE = `; fasmg source — edit freely to watch the tree-sitter grammar light it up.
+; Move the caret through this buffer to see the Tree panel track along.
 
 include 'format/format.inc'
 
@@ -88,6 +101,15 @@ let queryView = null;
 let treeView = null;
 let defaultQueryText = "";
 let lastTreeString = "";
+let treeSpans = [];
+
+// Re-entrance guards for cross-editor selection sync.
+let syncing = false;
+
+// Parse pipeline: token-discards stale results, scheduler coalesces
+// back-to-back doc/query updates into a single pass.
+let parseToken = 0;
+let parseScheduled = false;
 
 bootstrap().catch((error) => {
   console.error("advanced playground bootstrap failed:", error);
@@ -97,7 +119,7 @@ bootstrap().catch((error) => {
 
 async function bootstrap() {
   setRuntimeStatus("loading", "Loading grammar + queries…");
-  const queries = await loadDefaultFasmgQueries();
+  const [queries] = await Promise.all([loadFasmgQueries(), initFasmgLanguage()]);
   defaultQueryText = queries.highlightQuery;
 
   restoreTabs();
@@ -111,16 +133,20 @@ async function bootstrap() {
   const initialSource = storedSource ?? DEFAULT_SOURCE;
   const initialQuery = storedQuery ?? defaultQueryText;
 
-  mountSource(initialSource, initialQuery);
+  mountSource(initialSource);
   mountQuery(initialQuery);
   mountTree();
 
   setRuntimeStatus("ready", "Runtime ready");
   elements.runtimeLog.textContent =
-    "Grammar WASM and queries loaded. Edit source or query to see live updates.";
+    "Grammar WASM, queries, and Lezer NodeSet loaded. Edits drive a single " +
+    "parse pass that feeds decorations, lint markers, Tree panel, captures, " +
+    "and click-sync.";
+
+  scheduleParse();
 }
 
-function mountSource(initialSource, initialQuery) {
+function mountSource(initialSource) {
   elements.sourceHost.innerHTML = "";
   sourceView = new EditorView({
     parent: elements.sourceHost,
@@ -133,16 +159,20 @@ function mountSource(initialSource, initialQuery) {
         drawSelection(),
         history(),
         keymap.of([...defaultKeymap, ...historyKeymap]),
-        fasmgQueryField.init(() => initialQuery),
-        fasmgHighlight({ onParse: handleParseResult }),
+        fasmgLanguageSupport(),
+        fasmgCapturesField,
+        fasmgHighlight(),
+        fasmgLintGutter(),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             writeStorage(STORAGE_KEYS.source, update.state.doc.toString());
+            scheduleParse();
+          }
+          if (!syncing && update.selectionSet) {
+            syncFromSourceSelection(update.state.selection.main.head);
           }
         }),
-        EditorView.theme({
-          "&": { height: "100%" },
-        }),
+        EditorView.theme({ "&": { height: "100%" } }),
       ],
     }),
   });
@@ -164,13 +194,10 @@ function mountQuery(initialQuery) {
         ...sexpExtensions(),
         EditorView.updateListener.of((update) => {
           if (!update.docChanged) return;
-          const text = update.state.doc.toString();
-          writeStorage(STORAGE_KEYS.query, text);
-          sourceView?.dispatch({ effects: setFasmgQueryEffect.of(text) });
+          writeStorage(STORAGE_KEYS.query, update.state.doc.toString());
+          scheduleParse();
         }),
-        EditorView.theme({
-          "&": { height: "100%" },
-        }),
+        EditorView.theme({ "&": { height: "100%" } }),
       ],
     }),
   });
@@ -187,38 +214,129 @@ function mountTree() {
         lineNumbers(),
         drawSelection(),
         ...sexpExtensions(),
-        EditorView.theme({
-          "&": { height: "100%" },
+        EditorView.updateListener.of((update) => {
+          if (!syncing && update.selectionSet) {
+            syncFromTreeSelection(update.state.selection.main.head);
+          }
         }),
+        EditorView.theme({ "&": { height: "100%" } }),
       ],
     }),
   });
 }
 
-function handleParseResult(result) {
-  if (!result.ok) {
-    elements.syntaxStatus.textContent = "Unavailable";
-    elements.queryStatus.textContent = "Unavailable";
-    elements.parseTime.textContent = "n/a";
-    elements.captureCount.textContent = "0";
-    elements.runtimeLog.textContent = `Runtime error: ${result.error?.message ?? result.error}`;
-    setRuntimeStatus("error", "Runtime error");
-    return;
+function scheduleParse() {
+  if (parseScheduled) return;
+  parseScheduled = true;
+  queueMicrotask(() => {
+    parseScheduled = false;
+    runParse();
+  });
+}
+
+async function runParse() {
+  if (!sourceView) return;
+  const token = ++parseToken;
+  const source = sourceView.state.doc.toString();
+  const queryText =
+    queryView && queryView.state.doc.length > 0
+      ? queryView.state.doc.toString()
+      : defaultQueryText;
+
+  try {
+    const result = await inspectFasmgSource(source, { queryText });
+    if (token !== parseToken) return;
+
+    const treeBuild = buildTreeWithSpans(source);
+
+    sourceView.dispatch({
+      effects: setFasmgCapturesEffect.of(result.captures),
+    });
+
+    if (treeView && treeBuild.text !== lastTreeString) {
+      lastTreeString = treeBuild.text;
+      treeView.dispatch({
+        changes: {
+          from: 0,
+          to: treeView.state.doc.length,
+          insert: treeBuild.text,
+        },
+      });
+    }
+    treeSpans = treeBuild.spans;
+
+    applyFasmgDiagnostics(sourceView, result.diagnostics);
+    updateStatus(result);
+    renderClasses(result.classesUsed);
+    renderCaptures(result.captures);
+    renderDiagnostics(result.diagnostics);
+  } catch (error) {
+    if (token !== parseToken) return;
+    console.error("parse pipeline error:", error);
+    setRuntimeStatus("error", `Runtime error: ${error.message}`);
+    elements.runtimeLog.textContent = String(error.stack || error);
   }
+}
 
-  const {
-    captures,
-    diagnostics,
-    classesUsed,
-    parseMs,
-    treeString,
-  } = result;
+function buildTreeWithSpans(source) {
+  try {
+    const tsTree = parseFasmgSource(source);
+    try {
+      return buildTreeString(tsTree.rootNode);
+    } finally {
+      tsTree.delete?.();
+    }
+  } catch {
+    return { text: "", spans: [] };
+  }
+}
 
-  const queryErrors = diagnostics.filter((d) => d.kind === "query-error");
-  const syntaxIssues = diagnostics.filter((d) => d.kind !== "query-error");
+// --- click-sync -----------------------------------------------------
 
-  elements.parseTime.textContent = `${parseMs.toFixed(1)} ms`;
-  elements.captureCount.textContent = String(captures.length);
+function syncFromSourceSelection(pos) {
+  if (!treeView || treeSpans.length === 0) return;
+  const span = findSpanBySource(treeSpans, pos);
+  if (!span) return;
+  const { strStart, strEnd } = span;
+  if (strEnd > treeView.state.doc.length) return;
+  syncing = true;
+  try {
+    treeView.dispatch({
+      selection: { anchor: strStart, head: strEnd },
+      scrollIntoView: true,
+    });
+  } finally {
+    syncing = false;
+  }
+}
+
+function syncFromTreeSelection(pos) {
+  if (!sourceView || treeSpans.length === 0) return;
+  const span = findSpanByTree(treeSpans, pos);
+  if (!span) return;
+  const { sourceStart, sourceEnd } = span;
+  if (sourceEnd > sourceView.state.doc.length) return;
+  syncing = true;
+  try {
+    sourceView.dispatch({
+      selection: { anchor: sourceStart, head: sourceEnd },
+      scrollIntoView: true,
+    });
+  } finally {
+    syncing = false;
+  }
+}
+
+// --- panel rendering ------------------------------------------------
+
+function updateStatus(result) {
+  const queryErrors = result.diagnostics.filter((d) => d.kind === "query-error");
+  const syntaxIssues = result.diagnostics.filter(
+    (d) => d.kind !== "query-error",
+  );
+
+  elements.parseTime.textContent = `${result.parseMs.toFixed(1)} ms`;
+  elements.captureCount.textContent = String(result.captures.length);
   elements.syntaxStatus.textContent = syntaxIssues.length
     ? `${syntaxIssues.length} issue${syntaxIssues.length === 1 ? "" : "s"}`
     : "Clean";
@@ -227,23 +345,6 @@ function handleParseResult(result) {
     : "Ready";
 
   setRuntimeStatus("ready", "Runtime ready");
-
-  if (treeString !== lastTreeString) {
-    lastTreeString = treeString;
-    if (treeView) {
-      treeView.dispatch({
-        changes: {
-          from: 0,
-          to: treeView.state.doc.length,
-          insert: treeString,
-        },
-      });
-    }
-  }
-
-  renderClasses(classesUsed);
-  renderCaptures(captures);
-  renderDiagnostics(diagnostics);
 }
 
 function renderClasses(classesUsed) {
@@ -312,6 +413,18 @@ function renderCaptures(captures) {
     snippet.textContent = capture.text || "(empty)";
 
     row.append(name, range, snippet);
+    row.addEventListener("click", () => {
+      if (!sourceView) return;
+      sourceView.focus();
+      sourceView.dispatch({
+        selection: {
+          anchor: capture.startIndex,
+          head: capture.endIndex,
+        },
+        scrollIntoView: true,
+      });
+    });
+
     tbody.append(row);
   }
   table.append(tbody);
@@ -344,11 +457,25 @@ function renderDiagnostics(diagnostics) {
     context.textContent = diagnostic.lineText || "";
 
     item.append(title, message, context);
+
+    item.addEventListener("click", () => {
+      if (!sourceView) return;
+      const doc = sourceView.state.doc;
+      const from = doc.line(
+        Math.min(Math.max(1, diagnostic.startPosition.row + 1), doc.lines),
+      ).from + diagnostic.startPosition.column;
+      sourceView.focus();
+      sourceView.dispatch({
+        selection: { anchor: from, head: from },
+        scrollIntoView: true,
+      });
+    });
+
     elements.diagnosticsOutput.append(item);
   }
 }
 
-// --- tabs ------------------------------------------------------------
+// --- tabs -----------------------------------------------------------
 
 function bindTabs() {
   for (const button of document.querySelectorAll(
@@ -375,7 +502,6 @@ function activateTab(group, targetId) {
   if (group === "editor") {
     elements.editorCaption.textContent = EDITOR_CAPTIONS[targetId];
     writeStorage(STORAGE_KEYS.editorTab, targetId);
-    // Refresh CM6 layout after tab flip (editor was in a hidden panel).
     queueMicrotask(() => {
       if (targetId === "editor-source-panel") sourceView?.requestMeasure();
       if (targetId === "editor-query-panel") queryView?.requestMeasure();
@@ -400,7 +526,7 @@ function restoreTabs() {
   activateTab("output", outputTarget);
 }
 
-// --- splitter --------------------------------------------------------
+// --- splitter -------------------------------------------------------
 
 function bindSplitter() {
   if (!elements.splitter) return;
@@ -461,7 +587,7 @@ function bindResetQuery() {
   });
 }
 
-// --- status + storage helpers --------------------------------------
+// --- helpers --------------------------------------------------------
 
 function setRuntimeStatus(kind, message) {
   elements.runtimeStatus.dataset.kind = kind;

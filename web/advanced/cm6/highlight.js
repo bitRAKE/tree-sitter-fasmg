@@ -1,94 +1,53 @@
-// Reactive fasmg highlighting for CodeMirror 6.
+// Passive decoration renderer for fasmg source.
 //
-// The plugin owns the live parse cycle: on every source change, or on
-// every query change (propagated via StateEffect into a StateField on
-// the source editor's state), it calls `inspectFasmgSource` from
-// web/shared/fasmg-web.js, derives CM6 Decorations from the captures,
-// and fans out the full parse result (tree string, captures,
-// diagnostics, classes used, parse time) via an onParse callback so
-// sibling panels — Tree, Captures table, Diagnostics list, Classes
-// bar, status pills — can re-render without re-parsing.
+// Phase 3 pulls the parse orchestration up into main.js, which drives a
+// single parse cycle per edit and fans results out to every surface.
+// This module is now just the CM6 plumbing: a StateField holds the
+// current captures array, a ViewPlugin reads it and emits
+// Decoration.mark ranges. main.js dispatches `setFasmgCapturesEffect`
+// after each parse to refresh the field.
 //
-// The async cycle uses a token so late-arriving parses from
-// superseded edits don't clobber the decorations. A trailing
-// `view.dispatch({})` triggers CM6 to re-read the decorations getter
-// after the async result lands.
+// Capture names map to classes by cumulative dotted split:
+//   @keyword.directive -> "tok-keyword tok-keyword-directive"
+// so CSS can target the umbrella or the variant without duplication.
 
 import { StateEffect, StateField } from "@codemirror/state";
 import { ViewPlugin, Decoration } from "@codemirror/view";
 
-import {
-  inspectFasmgSource,
-  loadFasmgQueries,
-} from "../../shared/fasmg-web.js";
+export const setFasmgCapturesEffect = StateEffect.define();
 
-export const setFasmgQueryEffect = StateEffect.define();
-
-export const fasmgQueryField = StateField.define({
-  create: () => "",
+export const fasmgCapturesField = StateField.define({
+  create: () => [],
   update(value, tr) {
     for (const effect of tr.effects) {
-      if (effect.is(setFasmgQueryEffect)) return effect.value;
+      if (effect.is(setFasmgCapturesEffect)) return effect.value;
     }
     return value;
   },
 });
 
-let defaultQueriesPromise = null;
-
-export function loadDefaultFasmgQueries() {
-  if (!defaultQueriesPromise) {
-    defaultQueriesPromise = loadFasmgQueries();
-  }
-  return defaultQueriesPromise;
-}
-
-export function fasmgHighlight({ onParse } = {}) {
+export function fasmgHighlight() {
   return ViewPlugin.fromClass(
     class {
       decorations = Decoration.none;
-      token = 0;
 
       constructor(view) {
-        this.view = view;
-        this.reparse();
+        this.decorations = buildDecorations(
+          view.state.field(fasmgCapturesField, false) ?? [],
+        );
       }
 
       update(update) {
-        const oldQuery = update.startState.field(fasmgQueryField, false);
-        const newQuery = update.state.field(fasmgQueryField, false);
-        const queryChanged = oldQuery !== newQuery;
-        const docChanged = update.docChanged;
-
-        if (docChanged || queryChanged) {
-          this.reparse();
+        const oldCaptures =
+          update.startState.field(fasmgCapturesField, false) ?? [];
+        const newCaptures =
+          update.state.field(fasmgCapturesField, false) ?? [];
+        if (oldCaptures !== newCaptures) {
+          this.decorations = buildDecorations(newCaptures);
         }
       }
-
-      async reparse() {
-        const token = ++this.token;
-        const source = this.view.state.doc.toString();
-        const queryText = this.view.state.field(fasmgQueryField, false) || "";
-
-        try {
-          const options = queryText ? { queryText } : {};
-          const result = await inspectFasmgSource(source, options);
-          if (token !== this.token) return;
-
-          this.decorations = buildDecorations(result.captures);
-          onParse?.({ ok: true, ...result, queryText });
-        } catch (error) {
-          if (token !== this.token) return;
-          this.decorations = Decoration.none;
-          onParse?.({ ok: false, error });
-        }
-
-        this.view.dispatch({});
-      }
     },
-    {
-      decorations: (v) => v.decorations,
-    },
+    { decorations: (v) => v.decorations },
   );
 }
 

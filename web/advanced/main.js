@@ -43,19 +43,37 @@ const STORAGE_KEYS = {
   split: "fasmg-advanced-split-v1",
   source: "fasmg-advanced-source-v1",
   query: "fasmg-advanced-query-v1",
+  adhoc: "fasmg-advanced-adhoc-v1",
 };
 
 const OUTPUT_CAPTIONS = {
   "output-tree-panel": "Tree — click to select source; source cursor selects here",
-  "output-captures-panel": "Query captures and matched source ranges",
+  "output-captures-panel": "Highlight-query captures and matched source ranges",
   "output-diagnostics-panel": "Syntax recovery nodes and query diagnostics",
+  "output-adhoc-panel": "Ad-hoc query captures — independent of source decorations",
   "output-runtime-panel": "Runtime loader and workspace status",
 };
 
 const EDITOR_CAPTIONS = {
   "editor-source-panel": "fasmg source — live highlighting + lint + click-sync",
   "editor-query-panel": "highlight query — edits retarget source decorations",
+  "editor-adhoc-panel":
+    "ad-hoc tree-sitter query — live captures, no source decoration",
 };
+
+const DEFAULT_ADHOC = `; Ad-hoc tree-sitter query — runs against the current source tree.
+; Edits here do NOT affect source highlighting; see the Ad-hoc captures
+; panel on the right for live matches.
+
+[
+  (macro_definition)
+  (calminstruction_definition)
+  (label_definition)
+] @definition
+
+(parameter
+  name: (symbol_name) @param)
+`;
 
 const DEFAULT_SOURCE = `; fasmg source — edit freely to watch the tree-sitter grammar light it up.
 ; Move the caret through this buffer to see the Tree panel track along.
@@ -101,11 +119,15 @@ const elements = {
   splitter: document.querySelector("#workspace-splitter"),
   sourceHost: document.querySelector("#source-editor"),
   queryHost: document.querySelector("#query-editor"),
+  adhocHost: document.querySelector("#adhoc-editor"),
+  adhocStatus: document.querySelector("#adhoc-status"),
+  adhocCaptures: document.querySelector("#adhoc-captures-output"),
   treeHost: document.querySelector("#tree-editor"),
 };
 
 let sourceView = null;
 let queryView = null;
+let adhocView = null;
 let treeView = null;
 let defaultQueryText = "";
 let localsQueryText = "";
@@ -140,11 +162,14 @@ async function bootstrap() {
 
   const storedSource = readStorage(STORAGE_KEYS.source);
   const storedQuery = readStorage(STORAGE_KEYS.query);
+  const storedAdhoc = readStorage(STORAGE_KEYS.adhoc);
   const initialSource = storedSource ?? DEFAULT_SOURCE;
   const initialQuery = storedQuery ?? defaultQueryText;
+  const initialAdhoc = storedAdhoc ?? DEFAULT_ADHOC;
 
   mountSource(initialSource);
   mountQuery(initialQuery);
+  mountAdhoc(initialAdhoc);
   mountTree();
 
   setRuntimeStatus("ready", "Runtime ready");
@@ -210,6 +235,31 @@ function mountQuery(initialQuery) {
         EditorView.updateListener.of((update) => {
           if (!update.docChanged) return;
           writeStorage(STORAGE_KEYS.query, update.state.doc.toString());
+          scheduleParse();
+        }),
+        EditorView.theme({ "&": { height: "100%" } }),
+      ],
+    }),
+  });
+}
+
+function mountAdhoc(initialAdhoc) {
+  elements.adhocHost.innerHTML = "";
+  adhocView = new EditorView({
+    parent: elements.adhocHost,
+    state: EditorState.create({
+      doc: initialAdhoc,
+      extensions: [
+        lineNumbers(),
+        highlightActiveLineGutter(),
+        highlightActiveLine(),
+        drawSelection(),
+        history(),
+        keymap.of([...defaultKeymap, ...historyKeymap]),
+        ...sexpExtensions(),
+        EditorView.updateListener.of((update) => {
+          if (!update.docChanged) return;
+          writeStorage(STORAGE_KEYS.adhoc, update.state.doc.toString());
           scheduleParse();
         }),
         EditorView.theme({ "&": { height: "100%" } }),
@@ -288,12 +338,88 @@ async function runParse() {
     renderClasses(result.classesUsed);
     renderCaptures(result.captures);
     renderDiagnostics(result.diagnostics);
+    runAdhocQuery(source);
   } catch (error) {
     if (token !== parseToken) return;
     console.error("parse pipeline error:", error);
     setRuntimeStatus("error", `Runtime error: ${error.message}`);
     elements.runtimeLog.textContent = String(error.stack || error);
   }
+}
+
+function runAdhocQuery(source) {
+  if (!adhocView) return;
+  const queryText = adhocView.state.doc.toString().trim();
+  if (!queryText) {
+    renderAdhocStatus("idle", "Ad-hoc query empty — type one on the left.");
+    renderAdhocCaptures([]);
+    return;
+  }
+
+  let runtime;
+  try {
+    runtime = fasmgTsRuntime();
+  } catch {
+    return;
+  }
+
+  let tsTree = null;
+  let query = null;
+  try {
+    tsTree = parseFasmgSource(source);
+    query = new runtime.TreeSitter.Query(runtime.language, queryText);
+  } catch (error) {
+    renderAdhocStatus(
+      "error",
+      `Query error: ${error?.message ?? String(error)}`,
+    );
+    renderAdhocCaptures([]);
+    query?.delete?.();
+    tsTree?.delete?.();
+    return;
+  }
+
+  try {
+    const raw = query.captures(tsTree.rootNode);
+    const captures = raw.map((capture) => ({
+      name: capture.name,
+      startIndex: capture.node.startIndex,
+      endIndex: capture.node.endIndex,
+      startPosition: {
+        row: capture.node.startPosition.row,
+        column: capture.node.startPosition.column,
+      },
+      endPosition: {
+        row: capture.node.endPosition.row,
+        column: capture.node.endPosition.column,
+      },
+      text: source.slice(capture.node.startIndex, capture.node.endIndex),
+    }));
+
+    renderAdhocStatus(
+      "ok",
+      `${captures.length} capture${captures.length === 1 ? "" : "s"}`,
+    );
+    renderAdhocCaptures(captures);
+  } finally {
+    query.delete?.();
+    tsTree.delete?.();
+  }
+}
+
+function renderAdhocStatus(kind, message) {
+  if (!elements.adhocStatus) return;
+  elements.adhocStatus.innerHTML = "";
+  const pill = document.createElement("span");
+  pill.className = "status-pill";
+  pill.dataset.kind = kind;
+  pill.textContent = message;
+  elements.adhocStatus.append(pill);
+}
+
+function renderAdhocCaptures(captures) {
+  if (!elements.adhocCaptures) return;
+  renderCaptureTable(elements.adhocCaptures, captures, 200);
 }
 
 function computeFromTree(source) {
@@ -397,11 +523,14 @@ function renderClasses(classesUsed) {
 }
 
 function renderCaptures(captures) {
-  const maxCaptures = 200;
-  elements.capturesOutput.innerHTML = "";
+  renderCaptureTable(elements.capturesOutput, captures, 200);
+}
+
+function renderCaptureTable(host, captures, maxCaptures) {
+  host.innerHTML = "";
 
   if (captures.length === 0) {
-    elements.capturesOutput.innerHTML =
+    host.innerHTML =
       '<p class="status-pill">No captures for the current query.</p>';
     return;
   }
@@ -412,7 +541,7 @@ function renderCaptures(captures) {
     captures.length > maxCaptures
       ? `Showing the first ${maxCaptures} captures of ${captures.length}.`
       : `${captures.length} capture${captures.length === 1 ? "" : "s"}.`;
-  elements.capturesOutput.append(summary);
+  host.append(summary);
 
   const table = document.createElement("table");
   table.className = "capture-table";
@@ -460,7 +589,7 @@ function renderCaptures(captures) {
     tbody.append(row);
   }
   table.append(tbody);
-  elements.capturesOutput.append(table);
+  host.append(table);
 }
 
 function renderDiagnostics(diagnostics) {
@@ -537,6 +666,7 @@ function activateTab(group, targetId) {
     queueMicrotask(() => {
       if (targetId === "editor-source-panel") sourceView?.requestMeasure();
       if (targetId === "editor-query-panel") queryView?.requestMeasure();
+      if (targetId === "editor-adhoc-panel") adhocView?.requestMeasure();
     });
   }
 

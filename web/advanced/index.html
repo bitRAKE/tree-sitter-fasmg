@@ -77,6 +77,17 @@
                 data-tab-target="editor-query-panel">
                 Query
               </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="editor-adhoc-panel"
+                id="editor-adhoc-tab"
+                data-tab-group="editor"
+                data-tab-target="editor-adhoc-panel">
+                Ad-hoc
+              </button>
             </div>
             <div class="pane-tools">
               <span class="pane-caption" id="editor-caption">fasmg source — live highlighting</span>
@@ -100,6 +111,18 @@
             <div class="query-panel-shell">
               <div class="query-classbar" id="classes-output"></div>
               <div class="editor-host" id="query-editor"></div>
+            </div>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="editor-adhoc-panel"
+            aria-labelledby="editor-adhoc-tab"
+            hidden>
+            <div class="query-panel-shell">
+              <div class="query-classbar" id="adhoc-status"></div>
+              <div class="editor-host" id="adhoc-editor"></div>
             </div>
           </section>
         </section>
@@ -147,6 +170,17 @@
                 class="tab-button"
                 role="tab"
                 aria-selected="false"
+                aria-controls="output-adhoc-panel"
+                id="output-adhoc-tab"
+                data-tab-group="output"
+                data-tab-target="output-adhoc-panel">
+                Ad-hoc
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
                 aria-controls="output-runtime-panel"
                 id="output-runtime-tab"
                 data-tab-group="output"
@@ -183,6 +217,15 @@
             aria-labelledby="output-diagnostics-tab"
             hidden>
             <ul id="diagnostics-output" class="output-surface diagnostic-list"></ul>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="output-adhoc-panel"
+            aria-labelledby="output-adhoc-tab"
+            hidden>
+            <div id="adhoc-captures-output" class="output-surface capture-surface"></div>
           </section>
 
           <section

@@ -457,6 +457,22 @@ code {
   border-bottom: 1px dashed rgba(121, 192, 255, 0.5);
 }
 
+/* --- ad-hoc query status pill ------------------------------------- */
+
+#adhoc-status .status-pill[data-kind="error"] {
+  color: var(--danger);
+  border-color: rgba(255, 123, 114, 0.5);
+}
+
+#adhoc-status .status-pill[data-kind="ok"] {
+  color: var(--success);
+  border-color: rgba(126, 231, 135, 0.45);
+}
+
+#adhoc-status .status-pill[data-kind="idle"] {
+  color: var(--text-dim);
+}
+
 /* --- @codemirror/lint skin --------------------------------------- */
 
 .cm-lintRange-error { background: none; text-decoration-color: var(--danger); }

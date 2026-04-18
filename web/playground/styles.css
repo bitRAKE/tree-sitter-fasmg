@@ -51,7 +51,7 @@ code {
 
 .app-shell {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   gap: 10px;
   height: 100vh;
   padding: 10px;
@@ -244,12 +244,18 @@ code {
 
 .pane {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
   min-width: 0;
   min-height: 0;
   border: 1px solid var(--panel-border);
   background: var(--panel);
   box-shadow: var(--shadow);
+}
+
+.pane > .tab-panel {
+  grid-row: 2;
+  grid-column: 1;
+  min-height: 0;
 }
 
 .pane-header {

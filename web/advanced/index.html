@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fasmg Advanced Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- BEGIN vendor-cm6 -->
+    <script type="importmap">
+    {
+      "imports": {
+        "@lezer/common": "./vendor/cm6/lezer-common.js",
+        "@lezer/highlight": "./vendor/cm6/lezer-highlight.js",
+        "@codemirror/state": "./vendor/cm6/codemirror-state.js",
+        "@codemirror/view": "./vendor/cm6/codemirror-view.js",
+        "@codemirror/language": "./vendor/cm6/codemirror-language.js",
+        "@codemirror/commands": "./vendor/cm6/codemirror-commands.js"
+      }
+    }
+    </script>
+    <!-- END vendor-cm6 -->
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">fasmg</div>
+          <div class="brand-copy">
+            <h1>Advanced Playground</h1>
+            <p>CodeMirror 6 driven by the tree-sitter-fasmg grammar.</p>
+          </div>
+        </div>
+        <div class="status">
+          <span id="status" data-kind="loading">Booting…</span>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="pane">
+          <div class="pane-header">
+            <span class="pane-caption">Source</span>
+          </div>
+          <div id="editor" class="editor-host">
+            <p class="placeholder">Waiting on grammar runtime…</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

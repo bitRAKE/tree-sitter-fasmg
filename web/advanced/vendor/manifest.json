@@ -1,0 +1,53 @@
+{
+  "target": "es2022",
+  "upstream": "https://esm.sh",
+  "packages": {
+    "@lezer/common": {
+      "version": "1.2.1",
+      "sha256": "44ceefd8a9b5f639141c42b82624222d1762561e25904e3ce261307abdb99d32",
+      "external": []
+    },
+    "@lezer/highlight": {
+      "version": "1.2.1",
+      "sha256": "fea2883fc7d9742c29d4e3c3ef1cb39df817c889b4da51e9f3d25b31e418708c",
+      "external": [
+        "@lezer/common"
+      ]
+    },
+    "@codemirror/state": {
+      "version": "6.4.1",
+      "sha256": "fca8dfad913f626d8f2047adca55ee10a8a14c4a69056d63cff5b76f5bdbac30",
+      "external": [
+        "@lezer/common"
+      ]
+    },
+    "@codemirror/view": {
+      "version": "6.26.3",
+      "sha256": "01cd4ceb9a77edc5bd83cca5962603085c69b14517089c29ef51a46b6b5d6d3e",
+      "external": [
+        "@codemirror/state",
+        "@lezer/common"
+      ]
+    },
+    "@codemirror/language": {
+      "version": "6.10.1",
+      "sha256": "b1f74dcde76ad7f3dace80351b6f9b3b26ec126e689bebca2808f46983a565f8",
+      "external": [
+        "@codemirror/state",
+        "@codemirror/view",
+        "@lezer/common",
+        "@lezer/highlight"
+      ]
+    },
+    "@codemirror/commands": {
+      "version": "6.5.0",
+      "sha256": "7815584c3240b1f9c7d0a274103219e0eeebab5ad996e1fcef020ed13dcfb42c",
+      "external": [
+        "@codemirror/state",
+        "@codemirror/view",
+        "@codemirror/language",
+        "@lezer/common"
+      ]
+    }
+  }
+}

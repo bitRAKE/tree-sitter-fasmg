@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "@lezer/common": "./cm6/lezer-common.js",
+    "@lezer/highlight": "./cm6/lezer-highlight.js",
+    "@codemirror/state": "./cm6/codemirror-state.js",
+    "@codemirror/view": "./cm6/codemirror-view.js",
+    "@codemirror/language": "./cm6/codemirror-language.js",
+    "@codemirror/commands": "./cm6/codemirror-commands.js"
+  }
+}

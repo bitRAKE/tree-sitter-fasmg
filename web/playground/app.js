@@ -1,4 +1,4 @@
-import { inspectFasmgSource, loadFasmgQueries } from "./fasmg-web.js";
+import { inspectFasmgSource, loadFasmgQueries } from "../shared/fasmg-web.js";
 
 const FIXTURES = [
   {

@@ -1,0 +1,207 @@
+:root {
+  --bg: #1d1f21;
+  --panel: #252526;
+  --panel-alt: #1f2023;
+  --panel-border: #34363b;
+  --panel-border-strong: #4a4d55;
+  --code-bg: #1e1e1e;
+  --text: #d5d7da;
+  --text-soft: #a8adb7;
+  --text-dim: #8f949e;
+  --accent: #79c0ff;
+  --accent-soft: rgba(121, 192, 255, 0.14);
+  --danger: #ff7b72;
+  --success: #7ee787;
+  --warning: #ffd166;
+  --shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  height: 100vh;
+  padding: 10px;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(220px, auto) 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  padding: 6px 10px;
+  border: 1px solid var(--panel-border-strong);
+  background: var(--panel-alt);
+  color: var(--accent);
+  font: 600 12px/1 "IBM Plex Mono", Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.brand-copy h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.brand-copy p {
+  margin: 2px 0 0;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.status {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid var(--panel-border-strong);
+  background: var(--panel-alt);
+  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#status[data-kind="loading"] {
+  color: var(--warning);
+}
+
+#status[data-kind="ready"] {
+  color: var(--success);
+}
+
+#status[data-kind="error"] {
+  color: var(--danger);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 0;
+}
+
+.pane {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.pane-header {
+  padding: 10px;
+  border-bottom: 1px solid var(--panel-border);
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.editor-host {
+  background: var(--code-bg);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.placeholder {
+  margin: 0;
+  padding: 20px;
+  color: var(--text-dim);
+  font-family: "IBM Plex Mono", Consolas, monospace;
+}
+
+/* --- CodeMirror skin ------------------------------------------------- */
+
+.cm-editor {
+  height: 100%;
+  color: var(--text);
+  background: var(--code-bg);
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-scroller {
+  font: 14px/1.6 "IBM Plex Mono", Consolas, monospace;
+}
+
+.cm-gutters {
+  background: #181a1d;
+  color: var(--text-dim);
+  border-right: 1px solid var(--panel-border);
+}
+
+.cm-activeLineGutter {
+  background: rgba(121, 192, 255, 0.08);
+  color: var(--accent);
+}
+
+.cm-activeLine {
+  background: rgba(121, 192, 255, 0.05);
+}
+
+.cm-cursor,
+.cm-dropCursor {
+  border-left-color: var(--accent);
+}
+
+.cm-selectionBackground,
+.cm-focused .cm-selectionBackground,
+::selection {
+  background: rgba(121, 192, 255, 0.2);
+}
+
+/* --- Capture classes emitted by cm6/highlight.js --------------------- *
+ * Mirror the palette from web/playground/styles.css (#preview-output ...)
+ * so switching between the two playgrounds stays visually consistent.   */
+
+.tok-comment { color: #9ca3af; font-style: italic; }
+.tok-string { color: #72efdd; }
+.tok-number { color: #ffd166; font-weight: 700; }
+.tok-keyword,
+.tok-keyword-directive { color: #d2a8ff; font-weight: 700; }
+.tok-function,
+.tok-function-macro,
+.tok-function-special { color: #79c0ff; }
+.tok-label { color: #ffb4a2; }
+.tok-parameter { color: #b7efc5; text-decoration: underline; }
+.tok-attribute { color: #ffb77d; font-style: italic; }
+.tok-property,
+.tok-variable { color: #ffb4a2; }
+.tok-punctuation { color: #d7ccc8; }
+.tok-type { color: #80cbc4; }

@@ -141,6 +141,18 @@ async function load() {
     ),
   );
 
+  // NodeSet.extend() returns new NodeType instances carrying the
+  // added props (styleTags, foldNodeProp). Rebuild the lookup table
+  // from the extended set so convertNode attaches the prop-bearing
+  // types to every output node — otherwise highlighting / folding
+  // silently disabled.
+  nodeIndex = new Map();
+  for (const nt of nodeSet.types) {
+    nodeIndex.set(nt.name, nt);
+  }
+  topType = nodeIndex.get("source_file");
+  errorType = nodeIndex.get("ERROR");
+
   tsParser = new TreeSitter.Parser();
   tsParser.setLanguage(tsLanguage);
 }

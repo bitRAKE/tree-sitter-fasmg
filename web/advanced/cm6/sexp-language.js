@@ -25,7 +25,7 @@ import {
   syntaxHighlighting,
 } from "@codemirror/language";
 
-const TYPES = [
+const TYPES_RAW = [
   NodeType.define({ id: 0, name: "Document", top: true }),
   NodeType.define({ id: 1, name: "Node" }),
   NodeType.define({ id: 2, name: "Field" }),
@@ -43,9 +43,11 @@ const TYPES = [
   NodeType.define({ id: 14, name: "LineComment" }),
 ];
 
-const TYPE = Object.fromEntries(TYPES.map((nt) => [nt.name, nt]));
-
-const nodeSet = new NodeSet(TYPES).extend(
+// Build NodeSet first; it returns a *new* NodeSet with new NodeType
+// instances that carry the styleTags NodeProp. Using the pre-extension
+// NodeTypes (old bug) silently disabled highlighting because the props
+// live on the replacement instances.
+const nodeSet = new NodeSet(TYPES_RAW).extend(
   styleTags({
     NodeName: t.typeName,
     ErrorMarker: t.invalid,
@@ -60,6 +62,8 @@ const nodeSet = new NodeSet(TYPES).extend(
     LineComment: t.lineComment,
   }),
 );
+
+const TYPE = Object.fromEntries(nodeSet.types.map((nt) => [nt.name, nt]));
 
 const BREAK = new Set([" ", "\t", "\n", "\r", "(", ")", ":", '"']);
 

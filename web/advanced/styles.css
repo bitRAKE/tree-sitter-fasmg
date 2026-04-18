@@ -233,24 +233,6 @@ code {
   height: 100%;
 }
 
-.query-panel-shell {
-  display: grid;
-  min-height: 0;
-  height: 100%;
-  grid-template-rows: auto 1fr;
-}
-
-.query-classbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px;
-  border-bottom: 1px solid var(--panel-border);
-  background: #222428;
-  max-height: 25%;
-  overflow: auto;
-}
-
 .class-pill {
   display: inline-flex;
   padding: 5px 8px;
@@ -455,9 +437,18 @@ code {
 .cm-activeLineGutter { background: rgba(121, 192, 255, 0.08); color: var(--accent); }
 .cm-activeLine { background: rgba(121, 192, 255, 0.05); }
 .cm-cursor, .cm-dropCursor { border-left-color: var(--accent); }
-.cm-selectionBackground,
-.cm-focused .cm-selectionBackground,
-::selection { background: rgba(121, 192, 255, 0.2); }
+/* drawSelection() renders the selection as .cm-selectionBackground
+   inside .cm-selectionLayer. CM6 raises the alpha when focused and
+   dims it otherwise. Set both explicitly so click-sync selections in
+   the Tree view (which is never focused when synced from Source) stay
+   visible instead of falling back to a near-invisible default. */
+.cm-editor .cm-selectionBackground {
+  background: rgba(121, 192, 255, 0.22) !important;
+}
+.cm-editor.cm-focused .cm-selectionBackground {
+  background: rgba(121, 192, 255, 0.38) !important;
+}
+::selection { background: rgba(121, 192, 255, 0.35); }
 
 /* --- fasmg capture palette (Source editor decorations) -------------- */
 
@@ -504,20 +495,11 @@ code {
   border-bottom: 1px dashed rgba(121, 192, 255, 0.5);
 }
 
-/* --- ad-hoc query status pill ------------------------------------- */
+/* --- ad-hoc captures status pill ---------------------------------- */
 
-#adhoc-status .status-pill[data-kind="error"] {
+#adhoc-captures-output .status-pill[data-kind="error"] {
   color: var(--danger);
   border-color: rgba(255, 123, 114, 0.5);
-}
-
-#adhoc-status .status-pill[data-kind="ok"] {
-  color: var(--success);
-  border-color: rgba(126, 231, 135, 0.45);
-}
-
-#adhoc-status .status-pill[data-kind="idle"] {
-  color: var(--text-dim);
 }
 
 /* --- context panel ------------------------------------------------- */

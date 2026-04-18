@@ -119,7 +119,6 @@ const elements = {
   runtimeStatus: document.querySelector("#runtime-status"),
   capturesOutput: document.querySelector("#captures-output"),
   diagnosticsOutput: document.querySelector("#diagnostics-output"),
-  classesOutput: document.querySelector("#classes-output"),
   runtimeLog: document.querySelector("#runtime-log"),
   editorCaption: document.querySelector("#editor-caption"),
   outputCaption: document.querySelector("#output-caption"),
@@ -127,7 +126,6 @@ const elements = {
   sourceHost: document.querySelector("#source-editor"),
   queryHost: document.querySelector("#query-editor"),
   adhocHost: document.querySelector("#adhoc-editor"),
-  adhocStatus: document.querySelector("#adhoc-status"),
   adhocCaptures: document.querySelector("#adhoc-captures-output"),
   treeHost: document.querySelector("#tree-editor"),
   samplesSelect: document.querySelector("#samples-select"),
@@ -373,7 +371,6 @@ async function runParse() {
 
     applyFasmgDiagnostics(sourceView, result.diagnostics);
     updateStatus(result);
-    renderClasses(result.classesUsed);
     renderCaptures(result.captures);
     renderDiagnostics(result.diagnostics);
     runAdhocQuery(source);
@@ -386,11 +383,11 @@ async function runParse() {
 }
 
 function runAdhocQuery(source) {
-  if (!adhocView) return;
+  if (!adhocView || !elements.adhocCaptures) return;
   const queryText = adhocView.state.doc.toString().trim();
   if (!queryText) {
-    renderAdhocStatus("idle", "Ad-hoc query empty — type one on the left.");
-    renderAdhocCaptures([]);
+    elements.adhocCaptures.innerHTML =
+      '<p class="status-pill">Ad-hoc query empty — type one on the left.</p>';
     return;
   }
 
@@ -407,11 +404,12 @@ function runAdhocQuery(source) {
     tsTree = parseFasmgSource(source);
     query = new runtime.TreeSitter.Query(runtime.language, queryText);
   } catch (error) {
-    renderAdhocStatus(
-      "error",
-      `Query error: ${error?.message ?? String(error)}`,
-    );
-    renderAdhocCaptures([]);
+    elements.adhocCaptures.innerHTML = "";
+    const pill = document.createElement("p");
+    pill.className = "status-pill";
+    pill.dataset.kind = "error";
+    pill.textContent = `Query error: ${error?.message ?? String(error)}`;
+    elements.adhocCaptures.append(pill);
     query?.delete?.();
     tsTree?.delete?.();
     return;
@@ -434,30 +432,11 @@ function runAdhocQuery(source) {
       text: source.slice(capture.node.startIndex, capture.node.endIndex),
     }));
 
-    renderAdhocStatus(
-      "ok",
-      `${captures.length} capture${captures.length === 1 ? "" : "s"}`,
-    );
-    renderAdhocCaptures(captures);
+    renderCaptureTable(elements.adhocCaptures, captures, 200);
   } finally {
     query.delete?.();
     tsTree.delete?.();
   }
-}
-
-function renderAdhocStatus(kind, message) {
-  if (!elements.adhocStatus) return;
-  elements.adhocStatus.innerHTML = "";
-  const pill = document.createElement("span");
-  pill.className = "status-pill";
-  pill.dataset.kind = kind;
-  pill.textContent = message;
-  elements.adhocStatus.append(pill);
-}
-
-function renderAdhocCaptures(captures) {
-  if (!elements.adhocCaptures) return;
-  renderCaptureTable(elements.adhocCaptures, captures, 200);
 }
 
 function computeFromTree(source) {
@@ -550,23 +529,6 @@ function updateStatus(result) {
     : "Ready";
 
   setRuntimeStatus("ready", "Runtime ready");
-}
-
-function renderClasses(classesUsed) {
-  elements.classesOutput.innerHTML = "";
-  if (classesUsed.length === 0) {
-    const empty = document.createElement("span");
-    empty.className = "status-pill";
-    empty.textContent = "No active classes";
-    elements.classesOutput.append(empty);
-    return;
-  }
-  for (const className of classesUsed) {
-    const pill = document.createElement("span");
-    pill.className = "class-pill";
-    pill.textContent = className;
-    elements.classesOutput.append(pill);
-  }
 }
 
 function renderCaptures(captures) {

@@ -431,6 +431,32 @@ code {
  * exports sexpHighlightStyle mapping each tag to an explicit         *
  * .tok-<tagName> class. Colors match the fasmg source palette.       */
 
+/* --- fold gutter + local ref highlight ---------------------------- */
+
+.cm-foldGutter .cm-gutterElement {
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.cm-foldGutter .cm-gutterElement:hover {
+  color: var(--accent);
+}
+
+.cm-foldPlaceholder {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--panel-border-strong);
+  border-radius: 0;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.tok-local-ref {
+  background: rgba(121, 192, 255, 0.14);
+  border-bottom: 1px dashed rgba(121, 192, 255, 0.5);
+}
+
 /* --- @codemirror/lint skin --------------------------------------- */
 
 .cm-lintRange-error { background: none; text-decoration-color: var(--danger); }

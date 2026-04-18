@@ -8,6 +8,7 @@ import {
 } from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
 import { defaultKeymap, history, historyKeymap } from "@codemirror/commands";
+import { codeFolding, foldGutter, foldKeymap } from "@codemirror/language";
 
 import { inspectFasmgSource, loadFasmgQueries } from "./../shared/fasmg-web.js";
 
@@ -18,10 +19,17 @@ import {
 } from "./cm6/highlight.js";
 import {
   fasmgLanguageSupport,
+  fasmgTsRuntime,
   initFasmgLanguage,
   parseFasmgSource,
 } from "./cm6/language.js";
 import { applyFasmgDiagnostics, fasmgLintGutter } from "./cm6/diagnostics.js";
+import {
+  buildLocalsMap,
+  localsHighlight,
+  localsMapField,
+  setLocalsMapEffect,
+} from "./cm6/locals.js";
 import { sexpExtensions } from "./cm6/sexp-language.js";
 import {
   buildTreeString,
@@ -100,6 +108,7 @@ let sourceView = null;
 let queryView = null;
 let treeView = null;
 let defaultQueryText = "";
+let localsQueryText = "";
 let lastTreeString = "";
 let treeSpans = [];
 
@@ -121,6 +130,7 @@ async function bootstrap() {
   setRuntimeStatus("loading", "Loading grammar + queries…");
   const [queries] = await Promise.all([loadFasmgQueries(), initFasmgLanguage()]);
   defaultQueryText = queries.highlightQuery;
+  localsQueryText = queries.localsQuery;
 
   restoreTabs();
   restoreSplit();
@@ -160,8 +170,13 @@ function mountSource(initialSource) {
         history(),
         keymap.of([...defaultKeymap, ...historyKeymap]),
         fasmgLanguageSupport(),
+        codeFolding(),
+        foldGutter(),
+        keymap.of(foldKeymap),
         fasmgCapturesField,
         fasmgHighlight(),
+        localsMapField,
+        localsHighlight(),
         fasmgLintGutter(),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
@@ -247,10 +262,13 @@ async function runParse() {
     const result = await inspectFasmgSource(source, { queryText });
     if (token !== parseToken) return;
 
-    const treeBuild = buildTreeWithSpans(source);
+    const { treeBuild, localsMap } = computeFromTree(source);
 
     sourceView.dispatch({
-      effects: setFasmgCapturesEffect.of(result.captures),
+      effects: [
+        setFasmgCapturesEffect.of(result.captures),
+        setLocalsMapEffect.of(localsMap),
+      ],
     });
 
     if (treeView && treeBuild.text !== lastTreeString) {
@@ -278,16 +296,30 @@ async function runParse() {
   }
 }
 
-function buildTreeWithSpans(source) {
+function computeFromTree(source) {
+  const empty = {
+    treeBuild: { text: "", spans: [] },
+    localsMap: new Map(),
+  };
   try {
+    const runtime = fasmgTsRuntime();
     const tsTree = parseFasmgSource(source);
     try {
-      return buildTreeString(tsTree.rootNode);
+      const treeBuild = buildTreeString(tsTree.rootNode);
+      const localsMap = buildLocalsMap({
+        TreeSitter: runtime.TreeSitter,
+        tsLanguage: runtime.language,
+        tsTree,
+        queryText: localsQueryText,
+        source,
+      });
+      return { treeBuild, localsMap };
     } finally {
       tsTree.delete?.();
     }
-  } catch {
-    return { text: "", spans: [] };
+  } catch (error) {
+    console.warn("computeFromTree failed:", error);
+    return empty;
   }
 }
 

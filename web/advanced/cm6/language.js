@@ -30,6 +30,7 @@ import {
   Language,
   LanguageSupport,
   defineLanguageFacet,
+  foldNodeProp,
   syntaxHighlighting,
 } from "@codemirror/language";
 
@@ -41,10 +42,34 @@ const TreeSitterPromise = import(
 
 let tsLanguage = null;
 let tsParser = null;
+let tsNamespace = null;
 let nodeSet = null;
 let topType = null;
 let errorType = null;
 let nodeIndex = null;
+
+const FOLDABLE_NODE_TYPES = [
+  "macro_definition",
+  "struc_definition",
+  "calminstruction_definition",
+  "namespace_block",
+  "if_block",
+  "while_block",
+  "iterate_block",
+  "repeat_block",
+  "match_block",
+  "virtual_block",
+  "postpone_block",
+  "irp_block",
+];
+
+function foldBlockBody(node, state) {
+  const firstLine = state.doc.lineAt(node.from);
+  const from = firstLine.to;
+  const to = node.to;
+  if (to <= from) return null;
+  return { from, to };
+}
 
 export function initFasmgLanguage() {
   if (runtimePromise) return runtimePromise;
@@ -57,6 +82,7 @@ let runtimePromise = null;
 async function load() {
   const TreeSitter = await TreeSitterPromise;
   await TreeSitter.Parser.init();
+  tsNamespace = TreeSitter;
   tsLanguage = await loadFasmgLanguage();
 
   const nodeTypesUrl = new URL("../../../src/node-types.json", import.meta.url);
@@ -104,6 +130,15 @@ async function load() {
       identifier: t.variableName,
       ERROR: t.invalid,
     }),
+    // Mirrors queries/folds.scm — folding the block's body from the
+    // end of its opening line to the end of the node keeps the head
+    // visible, which is what you want for macro / calm / control
+    // blocks. If folds.scm grows, update both lists.
+    foldNodeProp.add(
+      Object.fromEntries(
+        FOLDABLE_NODE_TYPES.map((name) => [name, foldBlockBody]),
+      ),
+    ),
   );
 
   tsParser = new TreeSitter.Parser();
@@ -213,4 +248,14 @@ export function parseFasmgSource(source) {
     throw new Error("fasmg Language runtime not initialised");
   }
   return tsParser.parse(source);
+}
+
+// Expose the loaded tree-sitter runtime so other modules (e.g.
+// cm6/locals.js) can compile their own queries without re-importing
+// web-tree-sitter and re-awaiting Parser.init.
+export function fasmgTsRuntime() {
+  if (!tsNamespace || !tsLanguage) {
+    throw new Error("fasmg Language runtime not initialised");
+  }
+  return { TreeSitter: tsNamespace, language: tsLanguage };
 }

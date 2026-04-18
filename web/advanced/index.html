@@ -53,6 +53,7 @@
           <span class="status-pill">Captures <strong id="capture-count">0</strong></span>
           <span class="status-pill">Syntax <strong id="syntax-status">Idle</strong></span>
           <span class="status-pill">Query <strong id="query-status">Idle</strong></span>
+          <span class="status-pill context-pill" id="context-pill">Context <strong id="context-summary">idle</strong></span>
           <span class="status-pill runtime-pill" id="runtime-status" data-kind="loading">Booting</span>
         </div>
       </header>
@@ -187,6 +188,17 @@
                 class="tab-button"
                 role="tab"
                 aria-selected="false"
+                aria-controls="output-context-panel"
+                id="output-context-tab"
+                data-tab-group="output"
+                data-tab-target="output-context-panel">
+                Context
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
                 aria-controls="output-baseline-panel"
                 id="output-baseline-tab"
                 data-tab-group="output"
@@ -243,6 +255,15 @@
             aria-labelledby="output-adhoc-tab"
             hidden>
             <div id="adhoc-captures-output" class="output-surface capture-surface"></div>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="output-context-panel"
+            aria-labelledby="output-context-tab"
+            hidden>
+            <div id="context-output" class="output-surface context-surface"></div>
           </section>
 
           <section

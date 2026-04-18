@@ -520,6 +520,64 @@ code {
   color: var(--text-dim);
 }
 
+/* --- context panel ------------------------------------------------- */
+
+.context-surface {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.context-section {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--panel-border);
+  background: #202226;
+}
+
+.context-section h3 {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.context-section p { margin: 0; color: var(--text-soft); }
+
+.context-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.context-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-soft);
+  font-size: 12.5px;
+}
+
+.context-list code {
+  padding: 2px 6px;
+  background: #18364f;
+  color: #a5d6ff;
+  font: 12px "IBM Plex Mono", Consolas, monospace;
+}
+
+.context-pill strong {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* --- @codemirror/lint skin --------------------------------------- */
 
 .cm-lintRange-error { background: none; text-decoration-color: var(--danger); }

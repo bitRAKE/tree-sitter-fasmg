@@ -38,6 +38,10 @@ import {
 } from "./cm6/tree-string.js";
 import { loadSample, loadSampleManifest } from "./samples.js";
 import { loadFailuresTsv, parseFailuresTsv } from "./baseline.js";
+import {
+  analyseContext,
+  loadKeywordGroupIndex,
+} from "./cm6/context.js";
 
 const STORAGE_KEYS = {
   editorTab: "fasmg-advanced-editor-tab",
@@ -128,6 +132,9 @@ const elements = {
   treeHost: document.querySelector("#tree-editor"),
   samplesSelect: document.querySelector("#samples-select"),
   baselineOutput: document.querySelector("#baseline-output"),
+  contextOutput: document.querySelector("#context-output"),
+  contextSummary: document.querySelector("#context-summary"),
+  contextPill: document.querySelector("#context-pill"),
 };
 
 let sourceView = null;
@@ -140,6 +147,12 @@ let lastTreeString = "";
 let treeSpans = [];
 let sampleEntries = [];
 let baselineLoaded = false;
+
+// Kept alive across parses so the selection-change path can query
+// structure without reparsing. Replaced (and old one deleted) on
+// every successful runParse.
+let lastSourceTree = null;
+let lastSourceText = "";
 
 // Re-entrance guards for cross-editor selection sync.
 let syncing = false;
@@ -157,7 +170,11 @@ bootstrap().catch((error) => {
 
 async function bootstrap() {
   setRuntimeStatus("loading", "Loading grammar + queries…");
-  const [queries] = await Promise.all([loadFasmgQueries(), initFasmgLanguage()]);
+  const [queries] = await Promise.all([
+    loadFasmgQueries(),
+    initFasmgLanguage(),
+    loadKeywordGroupIndex(),
+  ]);
   defaultQueryText = queries.highlightQuery;
   localsQueryText = queries.localsQuery;
 
@@ -219,6 +236,7 @@ function mountSource(initialSource) {
           }
           if (!syncing && update.selectionSet) {
             syncFromSourceSelection(update.state.selection.main.head);
+            renderContextAtCaret(update.state.selection.main.head);
           }
         }),
         EditorView.theme({ "&": { height: "100%" } }),
@@ -439,22 +457,31 @@ function computeFromTree(source) {
   try {
     const runtime = fasmgTsRuntime();
     const tsTree = parseFasmgSource(source);
-    try {
-      const treeBuild = buildTreeString(tsTree.rootNode);
-      const localsMap = buildLocalsMap({
-        TreeSitter: runtime.TreeSitter,
-        tsLanguage: runtime.language,
-        tsTree,
-        queryText: localsQueryText,
-        source,
-      });
-      return { treeBuild, localsMap };
-    } finally {
-      tsTree.delete?.();
-    }
+    const treeBuild = buildTreeString(tsTree.rootNode);
+    const localsMap = buildLocalsMap({
+      TreeSitter: runtime.TreeSitter,
+      tsLanguage: runtime.language,
+      tsTree,
+      queryText: localsQueryText,
+      source,
+    });
+    // Hand ownership to the module-level cache; freed in rotateSourceTree.
+    rotateSourceTree(tsTree, source);
+    return { treeBuild, localsMap };
   } catch (error) {
     console.warn("computeFromTree failed:", error);
     return empty;
+  }
+}
+
+function rotateSourceTree(newTree, newSource) {
+  if (lastSourceTree && lastSourceTree !== newTree) {
+    lastSourceTree.delete?.();
+  }
+  lastSourceTree = newTree;
+  lastSourceText = newSource;
+  if (sourceView) {
+    renderContextAtCaret(sourceView.state.selection.main.head);
   }
 }
 
@@ -599,6 +626,139 @@ function renderCaptureTable(host, captures, maxCaptures) {
   }
   table.append(tbody);
   host.append(table);
+}
+
+function renderContextAtCaret(pos) {
+  if (!lastSourceTree) {
+    setContextSummary("idle");
+    if (elements.contextOutput) elements.contextOutput.innerHTML = "";
+    return;
+  }
+
+  const context = analyseContext({
+    tsTree: lastSourceTree,
+    source: lastSourceText,
+    pos,
+  });
+  if (!context) {
+    setContextSummary("—");
+    return;
+  }
+
+  const summaryParts = [];
+  if (context.wordAtCursor && context.keywordGroups) {
+    summaryParts.push(
+      `${context.wordAtCursor}: ${context.keywordGroups.join(", ")}`,
+    );
+  } else if (context.enclosingBlocks.length > 0) {
+    summaryParts.push(context.enclosingBlocks[0].type);
+  } else {
+    summaryParts.push(context.node.type);
+  }
+  setContextSummary(summaryParts.join(" | "));
+
+  if (!elements.contextOutput) return;
+  elements.contextOutput.innerHTML = "";
+
+  if (context.wordAtCursor) {
+    const section = document.createElement("section");
+    section.className = "context-section";
+    section.innerHTML = `<h3>Token at caret</h3>`;
+    const pill = document.createElement("span");
+    pill.className = "class-pill";
+    pill.textContent = context.wordAtCursor;
+    section.append(pill);
+    if (context.keywordGroups) {
+      for (const group of context.keywordGroups) {
+        const groupPill = document.createElement("span");
+        groupPill.className = "status-pill";
+        groupPill.textContent = group;
+        section.append(groupPill);
+      }
+    } else {
+      const unknown = document.createElement("span");
+      unknown.className = "status-pill";
+      unknown.style.color = "var(--text-dim)";
+      unknown.textContent = "not in any spec keyword group";
+      section.append(unknown);
+    }
+    elements.contextOutput.append(section);
+  }
+
+  const nodeSection = document.createElement("section");
+  nodeSection.className = "context-section";
+  nodeSection.innerHTML = `<h3>Tree node</h3>`;
+  const nodeLine = document.createElement("p");
+  nodeLine.innerHTML =
+    `<span class="class-pill">${escapeHtml(context.node.type)}</span>` +
+    ` <span class="status-pill">${context.node.start.row + 1}:${context.node.start.column + 1} – ${context.node.end.row + 1}:${context.node.end.column + 1}</span>`;
+  nodeSection.append(nodeLine);
+  if (context.node.text) {
+    const pre = document.createElement("pre");
+    pre.className = "diagnostic-context";
+    pre.textContent = context.node.text;
+    nodeSection.append(pre);
+  }
+  elements.contextOutput.append(nodeSection);
+
+  if (context.enclosingBlocks.length > 0) {
+    const blocks = document.createElement("section");
+    blocks.className = "context-section";
+    blocks.innerHTML = `<h3>Enclosing blocks (innermost first)</h3>`;
+    const list = document.createElement("ul");
+    list.className = "context-list";
+    for (const block of context.enclosingBlocks) {
+      const li = document.createElement("li");
+      li.innerHTML =
+        `<span class="class-pill">${escapeHtml(block.type)}</span>` +
+        ` <span class="status-pill">lines ${block.startRow + 1}–${block.endRow + 1}</span>`;
+      list.append(li);
+    }
+    blocks.append(list);
+    elements.contextOutput.append(blocks);
+  }
+
+  if (context.enclosingCalm.name || context.enclosingCalm.parameters.length) {
+    const calm = document.createElement("section");
+    calm.className = "context-section";
+    calm.innerHTML = `<h3>calminstruction scope</h3>`;
+    const head = document.createElement("p");
+    head.innerHTML =
+      context.enclosingCalm.name
+        ? `name: <span class="class-pill">${escapeHtml(context.enclosingCalm.name)}</span>`
+        : "<em>(unnamed)</em>";
+    calm.append(head);
+    if (context.enclosingCalm.parameters.length > 0) {
+      const list = document.createElement("ul");
+      list.className = "context-list";
+      for (const param of context.enclosingCalm.parameters) {
+        const li = document.createElement("li");
+        li.innerHTML =
+          `<code>${escapeHtml(param.raw)}</code>` +
+          (param.sigils
+            ? ` <span class="status-pill">sigils: ${escapeHtml(param.sigils)}</span>`
+            : "");
+        list.append(li);
+      }
+      calm.append(list);
+    }
+    elements.contextOutput.append(calm);
+  }
+}
+
+function setContextSummary(text) {
+  if (elements.contextSummary) {
+    elements.contextSummary.textContent = text;
+  }
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function renderDiagnostics(diagnostics) {

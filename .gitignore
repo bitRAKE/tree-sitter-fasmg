@@ -1,3 +1,5 @@
+.claude
+
 # Cargo and tree-sitter build outputs.
 /target
 /build
@@ -6,6 +8,7 @@
 # Generated *only* when running `tree-sitter test` with recording;
 # the committed `src/parser.c` is the source of truth.
 /log.html
+/tree-sitter-fasmg.wasm
 
 # Ad-hoc grammar probe files (edit, parse with `tree-sitter parse`, throw away).
 _probe.*

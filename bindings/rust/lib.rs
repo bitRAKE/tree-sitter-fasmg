@@ -5,6 +5,8 @@
 //! consumers don't need filesystem access to drive highlighting, locals, or
 //! folds.
 
+mod html;
+
 use tree_sitter_language::LanguageFn;
 
 unsafe extern "C" {
@@ -25,6 +27,12 @@ pub const LOCALS_QUERY: &str = include_str!("../../queries/locals.scm");
 
 /// The folds query for this grammar.
 pub const FOLDS_QUERY: &str = include_str!("../../queries/folds.scm");
+
+pub use html::{
+    highlight_html, highlight_html_document, highlight_html_with_query, syntax_diagnostics,
+    HighlightHtmlError, HtmlHighlightOutput, SourcePosition, SyntaxDiagnostic,
+    SyntaxDiagnosticKind, DEFAULT_HTML_CSS, STANDARD_HIGHLIGHT_NAMES,
+};
 
 #[cfg(test)]
 mod tests {

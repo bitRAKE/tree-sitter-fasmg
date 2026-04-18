@@ -6,6 +6,9 @@
 (macro_definition
   name: (symbol_name) @local.scope)
 
+(struc_definition
+  name: (symbol_name) @local.scope)
+
 (calminstruction_definition
   name: (symbol_name) @local.scope)
 

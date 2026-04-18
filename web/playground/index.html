@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fasmg Tree-sitter Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-group topbar-brand">
+          <div class="brand-mark">fasmg</div>
+          <div class="brand-copy">
+            <h1>Syntax Playground</h1>
+            <p>Tree-sitter parsing, highlighting, and query inspection.</p>
+          </div>
+        </div>
+
+        <div class="topbar-group topbar-controls">
+          <label class="toolbar-select" for="fixture-select">
+            <span>Fixture</span>
+            <select id="fixture-select"></select>
+          </label>
+          <button type="button" class="toolbar-button" id="load-fixture">Load</button>
+          <button type="button" class="toolbar-button" id="reset-query">Reset Query</button>
+          <button type="button" class="toolbar-button" id="help-toggle" aria-expanded="false" aria-controls="help-panel">About</button>
+        </div>
+
+        <div class="topbar-group topbar-status">
+          <span class="status-pill">Parse <strong id="parse-time">n/a</strong></span>
+          <span class="status-pill">Captures <strong id="capture-count">0</strong></span>
+          <span class="status-pill">Syntax <strong id="syntax-status">Idle</strong></span>
+          <span class="status-pill">Query <strong id="query-status">Idle</strong></span>
+        </div>
+      </header>
+
+      <section class="help-panel" id="help-panel" hidden>
+        <div class="help-card">
+          <div class="help-header">
+            <h2>About This Workspace</h2>
+            <button type="button" class="toolbar-button toolbar-button-subtle" id="help-close">Close</button>
+          </div>
+          <div class="help-grid">
+            <section>
+              <h3>Purpose</h3>
+              <p>
+                This page loads the committed fasmg grammar as WebAssembly, applies the
+                repo highlight query, and exposes the syntax tree, query captures, and
+                parse-recovery diagnostics.
+              </p>
+            </section>
+            <section>
+              <h3>Layout</h3>
+              <p>
+                Use the left tabs to switch between source and highlight query editing.
+                Use the right tabs to switch between preview, tree, captures, diagnostics,
+                and runtime status. Drag the center divider to resize the split.
+              </p>
+            </section>
+            <section>
+              <h3>Serving</h3>
+              <p>
+                Open this page over <code>http://127.0.0.1:8000/web/playground/</code>,
+                not <code>file://</code>, so the browser can fetch modules, queries, and
+                <code>tree-sitter-fasmg.wasm</code>.
+              </p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <main class="workspace">
+        <section class="pane editor-pane" id="editor-pane">
+          <div class="pane-header">
+            <div class="tabbar" role="tablist" aria-label="Editor views">
+              <button
+                type="button"
+                class="tab-button is-active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="editor-source-panel"
+                id="editor-source-tab"
+                data-tab-group="editor"
+                data-tab-target="editor-source-panel">
+                Source
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="editor-query-panel"
+                id="editor-query-tab"
+                data-tab-group="editor"
+                data-tab-target="editor-query-panel">
+                Query
+              </button>
+            </div>
+            <div class="pane-tools">
+              <span class="pane-caption" id="editor-caption">fasmg source editor</span>
+            </div>
+          </div>
+
+          <section
+            class="tab-panel is-active"
+            role="tabpanel"
+            id="editor-source-panel"
+            aria-labelledby="editor-source-tab">
+            <textarea
+              id="source-input"
+              class="code-input"
+              spellcheck="false"
+              autocapitalize="off"
+              autocomplete="off"
+              autocorrect="off"></textarea>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="editor-query-panel"
+            aria-labelledby="editor-query-tab"
+            hidden>
+            <div class="query-panel-shell">
+              <div class="query-classbar" id="classes-output"></div>
+              <textarea
+                id="query-input"
+                class="code-input"
+                spellcheck="false"
+                autocapitalize="off"
+                autocomplete="off"
+                autocorrect="off"></textarea>
+            </div>
+          </section>
+        </section>
+
+        <div class="splitter" id="workspace-splitter" role="separator" aria-orientation="vertical" aria-label="Resize editor and output panes"></div>
+
+        <section class="pane output-pane" id="output-pane">
+          <div class="pane-header">
+            <div class="tabbar tabbar-output" role="tablist" aria-label="Output views">
+              <button
+                type="button"
+                class="tab-button is-active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="output-preview-panel"
+                id="output-preview-tab"
+                data-tab-group="output"
+                data-tab-target="output-preview-panel">
+                Preview
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-tree-panel"
+                id="output-tree-tab"
+                data-tab-group="output"
+                data-tab-target="output-tree-panel">
+                Tree
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-captures-panel"
+                id="output-captures-tab"
+                data-tab-group="output"
+                data-tab-target="output-captures-panel">
+                Captures
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-diagnostics-panel"
+                id="output-diagnostics-tab"
+                data-tab-group="output"
+                data-tab-target="output-diagnostics-panel">
+                Diagnostics
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-runtime-panel"
+                id="output-runtime-tab"
+                data-tab-group="output"
+                data-tab-target="output-runtime-panel">
+                Runtime
+              </button>
+            </div>
+            <div class="pane-tools">
+              <span class="pane-caption" id="output-caption">HTML preview generated from the active query</span>
+            </div>
+          </div>
+
+          <section
+            class="tab-panel is-active output-panel"
+            role="tabpanel"
+            id="output-preview-panel"
+            aria-labelledby="output-preview-tab">
+            <pre id="preview-output" class="output-surface output-preview"></pre>
+          </section>
+
+          <section
+            class="tab-panel output-panel"
+            role="tabpanel"
+            id="output-tree-panel"
+            aria-labelledby="output-tree-tab"
+            hidden>
+            <pre id="tree-output" class="output-surface"></pre>
+          </section>
+
+          <section
+            class="tab-panel output-panel"
+            role="tabpanel"
+            id="output-captures-panel"
+            aria-labelledby="output-captures-tab"
+            hidden>
+            <div id="captures-output" class="output-surface capture-surface"></div>
+          </section>
+
+          <section
+            class="tab-panel output-panel"
+            role="tabpanel"
+            id="output-diagnostics-panel"
+            aria-labelledby="output-diagnostics-tab"
+            hidden>
+            <ul id="diagnostics-output" class="output-surface diagnostic-list"></ul>
+          </section>
+
+          <section
+            class="tab-panel output-panel"
+            role="tabpanel"
+            id="output-runtime-panel"
+            aria-labelledby="output-runtime-tab"
+            hidden>
+            <div class="output-surface runtime-surface">
+              <div class="runtime-pills">
+                <span class="status-pill">HTTP origin required</span>
+                <span class="status-pill">Loads `.wasm` and queries</span>
+                <span class="status-pill">Layout persists locally</span>
+              </div>
+              <pre id="empty-state" class="runtime-log">Runtime healthy. The browser loaded the current workspace state successfully.</pre>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

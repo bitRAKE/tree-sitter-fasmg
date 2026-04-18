@@ -5,7 +5,11 @@
   "description": "Tree-sitter grammar for fasmg (flat assembler g).",
   "scripts": {
     "generate": "bash scripts/ts.sh generate --js-runtime native",
-    "test": "bash scripts/ts.sh test"
+    "test": "bash scripts/ts.sh test",
+    "wasm": "bash scripts/build-wasm.sh",
+    "demo": "bash scripts/demo.sh",
+    "demo:build": "bash scripts/build-wasm.sh",
+    "playground:export": "bash scripts/export-playground.sh"
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.26.8"

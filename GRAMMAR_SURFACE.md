@@ -419,36 +419,39 @@ in [bindings/rust/lib.rs](bindings/rust/lib.rs).
 
 ### 10.1 `queries/highlights.scm`
 
-Captures: `@comment`, `@string`, `@number`, `@label`,
-`@function.macro`, `@function.special` (calminstruction),
-`@parameter`, `@keyword.directive`, plus `@keyword.directive` on
-`restore_statement` and `purge_statement`.
+Captures standard highlight classes for the grammar's main public
+surface: `@comment`, `@string`, `@number`, `@attribute`
+(`line_modifier`), `@property` (labels), `@function`
+(`macro_definition` + `instruction_statement` names),
+`@function.builtin` (`calminstruction_definition.name`), `@type`
+(`struc_definition.name`), `@type.builtin` (`calm_target`
+identifier), `@variable`, `@variable.parameter`, `@keyword`,
+`@punctuation.special` (decorators), and `@punctuation.bracket`
+(`stray_bracket`).
 
-**Currently missing**: no captures for `line_modifier`, `decorator`,
-`calm_target`, `stray_bracket`, `free_begin_clause`, `free_end_clause`,
-or CALM-scope sub-categories. Extending is straightforward — pick the
-node kinds you care about from `src/node-types.json` and add capture
-patterns.
+Recovery-only nodes (`free_begin_clause`, `free_end_clause`) are
+deliberately highlighted as `@keyword` so browser/manual-diagnostic
+consumers can spot them immediately.
 
 ### 10.2 `queries/locals.scm`
 
 Captures: `@local.scope` on `macro_definition.name` and
-`calminstruction_definition.name`; `@local.definition` on
-`label_definition.name`, `assignment_statement.name`, and
-`parameter.name`; `@local.reference` on every `identifier`.
+`struc_definition.name` and `calminstruction_definition.name`;
+`@local.definition` on `label_definition.name`,
+`assignment_statement.name`, and `parameter.name`;
+`@local.reference` on every `identifier`.
 
-Conservative — doesn't model `struc_definition` as a scope anchor
-yet (it should), and doesn't yet distinguish CALM-local from
-top-level scopes.
+Still conservative — it doesn't distinguish CALM-local from top-level
+scopes, so advanced shadowing analysis still belongs in a higher-level
+consumer.
 
 ### 10.3 `queries/folds.scm`
 
-Captures `@fold` on `macro_definition`, `calminstruction_definition`,
-and `if_block`. **Currently missing**: `struc_definition`,
-`namespace_block`, `while_block`, `iterate_block`, `repeat_block`,
-`match_block`, `virtual_block`, `postpone_block`, `irp_block`.
-A walker-based fold provider (e.g. inside an LSP) can cover these
-exhaustively without needing to extend the query.
+Captures `@fold` on every major definition/block form emitted by the
+grammar: `macro_definition`, `struc_definition`,
+`calminstruction_definition`, `namespace_block`, `if_block`,
+`while_block`, `iterate_block`, `repeat_block`, `match_block`,
+`virtual_block`, `postpone_block`, and `irp_block`.
 
 ---
 
@@ -499,10 +502,13 @@ contract.
 ```bash
 bash scripts/ts.sh generate --js-runtime native   # regenerate src/ from grammar.js
 bash scripts/ts.sh test                           # run test/corpus/*
+bash scripts/build-wasm.sh                       # build ./tree-sitter-fasmg.wasm for browser consumers
+bash scripts/export-playground.sh out/           # export stock Tree-sitter playground as static files
 ```
 
 PowerShell users: `.\scripts\ts.ps1 generate --js-runtime native` /
-`.\scripts\ts.ps1 test`.
+`.\scripts\ts.ps1 test` / `.\scripts\build-wasm.ps1` /
+`.\scripts\export-playground.ps1 out\`.
 
 Corpus baseline against external fasmg corpora:
 
@@ -538,10 +544,18 @@ Add them under `bindings/<language>/` when a consumer needs them.
 | `HIGHLIGHT_QUERY` | `&'static str` | Content of `queries/highlights.scm`. |
 | `LOCALS_QUERY` | `&'static str` | Content of `queries/locals.scm`. |
 | `FOLDS_QUERY` | `&'static str` | Content of `queries/folds.scm`. |
+| `STANDARD_HIGHLIGHT_NAMES` | `&'static [&'static str]` | Standard capture classes recognised by the Rust HTML helper. |
+| `DEFAULT_HTML_CSS` | `&'static str` | Bundled stylesheet for `highlight_html_document`. |
+| `highlight_html` | `fn(&str) -> Result<HtmlHighlightOutput, HighlightHtmlError>` | Render a fragment of class-based HTML plus syntax diagnostics. |
+| `highlight_html_document` | `fn(&str, &str) -> Result<String, HighlightHtmlError>` | Wrap the highlighted fragment in a standalone HTML document. |
+| `highlight_html_with_query` | `fn(&str, &str) -> Result<HtmlHighlightOutput, HighlightHtmlError>` | Same as `highlight_html`, but with a caller-supplied highlight query. |
+| `syntax_diagnostics` | `fn(&str) -> Vec<SyntaxDiagnostic>` | Collect `ERROR` / missing-node diagnostics from a parse tree. |
 
 Query strings are inlined — consumers get them without filesystem
 access. They're suitable for `tree_sitter::Query::new` against the
-loaded language.
+loaded language. The HTML helper is built on the official
+`tree-sitter-highlight` crate and returns CSS-class HTML so downstream
+sites can apply their own theme.
 
 ---
 

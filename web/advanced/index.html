@@ -29,26 +29,176 @@
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <div class="brand">
+        <div class="topbar-group topbar-brand">
           <div class="brand-mark">fasmg</div>
           <div class="brand-copy">
             <h1>Advanced Playground</h1>
             <p>CodeMirror 6 driven by the tree-sitter-fasmg grammar.</p>
           </div>
         </div>
-        <div class="status">
-          <span id="status" data-kind="loading">Booting…</span>
+
+        <div class="topbar-group topbar-controls">
+          <button type="button" class="toolbar-button" id="reset-query">Reset Query</button>
+        </div>
+
+        <div class="topbar-group topbar-status">
+          <span class="status-pill">Parse <strong id="parse-time">n/a</strong></span>
+          <span class="status-pill">Captures <strong id="capture-count">0</strong></span>
+          <span class="status-pill">Syntax <strong id="syntax-status">Idle</strong></span>
+          <span class="status-pill">Query <strong id="query-status">Idle</strong></span>
+          <span class="status-pill runtime-pill" id="runtime-status" data-kind="loading">Booting</span>
         </div>
       </header>
 
       <main class="workspace">
-        <section class="pane">
+        <section class="pane editor-pane" id="editor-pane">
           <div class="pane-header">
-            <span class="pane-caption">Source</span>
+            <div class="tabbar" role="tablist" aria-label="Editor views">
+              <button
+                type="button"
+                class="tab-button is-active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="editor-source-panel"
+                id="editor-source-tab"
+                data-tab-group="editor"
+                data-tab-target="editor-source-panel">
+                Source
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="editor-query-panel"
+                id="editor-query-tab"
+                data-tab-group="editor"
+                data-tab-target="editor-query-panel">
+                Query
+              </button>
+            </div>
+            <div class="pane-tools">
+              <span class="pane-caption" id="editor-caption">fasmg source — live highlighting</span>
+            </div>
           </div>
-          <div id="editor" class="editor-host">
-            <p class="placeholder">Waiting on grammar runtime…</p>
+
+          <section
+            class="tab-panel is-active"
+            role="tabpanel"
+            id="editor-source-panel"
+            aria-labelledby="editor-source-tab">
+            <div class="editor-host" id="source-editor"></div>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="editor-query-panel"
+            aria-labelledby="editor-query-tab"
+            hidden>
+            <div class="query-panel-shell">
+              <div class="query-classbar" id="classes-output"></div>
+              <div class="editor-host" id="query-editor"></div>
+            </div>
+          </section>
+        </section>
+
+        <div class="splitter" id="workspace-splitter" role="separator" aria-orientation="vertical" aria-label="Resize editor and output panes"></div>
+
+        <section class="pane output-pane" id="output-pane">
+          <div class="pane-header">
+            <div class="tabbar tabbar-output" role="tablist" aria-label="Output views">
+              <button
+                type="button"
+                class="tab-button is-active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="output-tree-panel"
+                id="output-tree-tab"
+                data-tab-group="output"
+                data-tab-target="output-tree-panel">
+                Tree
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-captures-panel"
+                id="output-captures-tab"
+                data-tab-group="output"
+                data-tab-target="output-captures-panel">
+                Captures
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-diagnostics-panel"
+                id="output-diagnostics-tab"
+                data-tab-group="output"
+                data-tab-target="output-diagnostics-panel">
+                Diagnostics
+              </button>
+              <button
+                type="button"
+                class="tab-button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="output-runtime-panel"
+                id="output-runtime-tab"
+                data-tab-group="output"
+                data-tab-target="output-runtime-panel">
+                Runtime
+              </button>
+            </div>
+            <div class="pane-tools">
+              <span class="pane-caption" id="output-caption">Concrete syntax tree from the browser-side parser</span>
+            </div>
           </div>
+
+          <section
+            class="tab-panel is-active"
+            role="tabpanel"
+            id="output-tree-panel"
+            aria-labelledby="output-tree-tab">
+            <div class="editor-host" id="tree-editor"></div>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="output-captures-panel"
+            aria-labelledby="output-captures-tab"
+            hidden>
+            <div id="captures-output" class="output-surface capture-surface"></div>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="output-diagnostics-panel"
+            aria-labelledby="output-diagnostics-tab"
+            hidden>
+            <ul id="diagnostics-output" class="output-surface diagnostic-list"></ul>
+          </section>
+
+          <section
+            class="tab-panel"
+            role="tabpanel"
+            id="output-runtime-panel"
+            aria-labelledby="output-runtime-tab"
+            hidden>
+            <div class="output-surface runtime-surface">
+              <div class="runtime-pills">
+                <span class="status-pill">HTTP origin required</span>
+                <span class="status-pill">CM6 vendored locally</span>
+                <span class="status-pill">web-tree-sitter.js loaded from CDN</span>
+              </div>
+              <pre id="runtime-log" class="runtime-log">Runtime idle.</pre>
+            </div>
+          </section>
         </section>
       </main>
     </div>

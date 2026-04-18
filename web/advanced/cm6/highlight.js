@@ -1,101 +1,109 @@
-// Live fasmg highlighting for CodeMirror 6.
+// Reactive fasmg highlighting for CodeMirror 6.
 //
-// Phase 1 takes the pragmatic route: a ViewPlugin owns a tree-sitter parser
-// and the compiled highlights.scm query, re-parses on every document change,
-// and emits CM6 Decorations whose classes are derived from the capture names.
-// We deliberately do *not* plug into CM6's Language/syntaxTree pipeline here
-// — that comes in Phase 3 alongside folds/locals/click-sync, where having a
-// real Lezer tree pays off. The double-parse cost (tree-sitter here, Lezer
-// nothing in Phase 1) is well under a millisecond for typical fasmg files.
+// The plugin owns the live parse cycle: on every source change, or on
+// every query change (propagated via StateEffect into a StateField on
+// the source editor's state), it calls `inspectFasmgSource` from
+// web/shared/fasmg-web.js, derives CM6 Decorations from the captures,
+// and fans out the full parse result (tree string, captures,
+// diagnostics, classes used, parse time) via an onParse callback so
+// sibling panels — Tree, Captures table, Diagnostics list, Classes
+// bar, status pills — can re-render without re-parsing.
 //
-// Capture names map to classes by splitting on `.`:
-//   @keyword.directive  ->  "tok-keyword tok-keyword-directive"
-// The cumulative emission lets CSS target the umbrella (.tok-keyword) or the
-// specific variant (.tok-keyword-directive) without duplicating rules.
+// The async cycle uses a token so late-arriving parses from
+// superseded edits don't clobber the decorations. A trailing
+// `view.dispatch({})` triggers CM6 to re-read the decorations getter
+// after the async result lands.
 
+import { StateEffect, StateField } from "@codemirror/state";
 import { ViewPlugin, Decoration } from "@codemirror/view";
 
 import {
-  loadFasmgLanguage,
+  inspectFasmgSource,
   loadFasmgQueries,
 } from "../../shared/fasmg-web.js";
 
-const TreeSitterPromise = import(
-  "https://tree-sitter.github.io/web-tree-sitter.js"
-);
+export const setFasmgQueryEffect = StateEffect.define();
 
-let tsParser = null;
-let tsQuery = null;
-let runtimePromise = null;
+export const fasmgQueryField = StateField.define({
+  create: () => "",
+  update(value, tr) {
+    for (const effect of tr.effects) {
+      if (effect.is(setFasmgQueryEffect)) return effect.value;
+    }
+    return value;
+  },
+});
 
-export function initFasmgHighlight() {
-  if (!runtimePromise) {
-    runtimePromise = (async () => {
-      const TreeSitter = await TreeSitterPromise;
-      await TreeSitter.Parser.init();
-      const tsLanguage = await loadFasmgLanguage();
-      const { highlightQuery } = await loadFasmgQueries();
-      tsParser = new TreeSitter.Parser();
-      tsParser.setLanguage(tsLanguage);
-      tsQuery = new TreeSitter.Query(tsLanguage, highlightQuery);
-    })();
+let defaultQueriesPromise = null;
+
+export function loadDefaultFasmgQueries() {
+  if (!defaultQueriesPromise) {
+    defaultQueriesPromise = loadFasmgQueries();
   }
-  return runtimePromise;
+  return defaultQueriesPromise;
 }
 
-export function fasmgHighlight() {
-  return ViewPlugin.fromClass(FasmgHighlightPlugin, {
-    decorations: (plugin) => plugin.decorations,
-  });
-}
+export function fasmgHighlight({ onParse } = {}) {
+  return ViewPlugin.fromClass(
+    class {
+      decorations = Decoration.none;
+      token = 0;
 
-class FasmgHighlightPlugin {
-  constructor(view) {
-    this.view = view;
-    this.tsTree = null;
-    this.decorations = Decoration.none;
-    this.reparse();
-  }
-
-  update(update) {
-    if (update.docChanged) {
-      this.reparse();
-    }
-  }
-
-  destroy() {
-    this.tsTree?.delete?.();
-    this.tsTree = null;
-  }
-
-  reparse() {
-    if (!tsParser || !tsQuery) {
-      return;
-    }
-    const source = this.view.state.doc.toString();
-    this.tsTree?.delete?.();
-    this.tsTree = tsParser.parse(source);
-    this.decorations = this.buildDecorations();
-  }
-
-  buildDecorations() {
-    const captures = tsQuery.captures(this.tsTree.rootNode);
-    const ranges = [];
-    for (const capture of captures) {
-      const start = capture.node.startIndex;
-      const end = capture.node.endIndex;
-      if (start === end) {
-        continue;
+      constructor(view) {
+        this.view = view;
+        this.reparse();
       }
-      ranges.push(
-        Decoration.mark({ class: captureToClass(capture.name) }).range(
-          start,
-          end,
-        ),
-      );
-    }
-    return Decoration.set(ranges, true);
+
+      update(update) {
+        const oldQuery = update.startState.field(fasmgQueryField, false);
+        const newQuery = update.state.field(fasmgQueryField, false);
+        const queryChanged = oldQuery !== newQuery;
+        const docChanged = update.docChanged;
+
+        if (docChanged || queryChanged) {
+          this.reparse();
+        }
+      }
+
+      async reparse() {
+        const token = ++this.token;
+        const source = this.view.state.doc.toString();
+        const queryText = this.view.state.field(fasmgQueryField, false) || "";
+
+        try {
+          const options = queryText ? { queryText } : {};
+          const result = await inspectFasmgSource(source, options);
+          if (token !== this.token) return;
+
+          this.decorations = buildDecorations(result.captures);
+          onParse?.({ ok: true, ...result, queryText });
+        } catch (error) {
+          if (token !== this.token) return;
+          this.decorations = Decoration.none;
+          onParse?.({ ok: false, error });
+        }
+
+        this.view.dispatch({});
+      }
+    },
+    {
+      decorations: (v) => v.decorations,
+    },
+  );
+}
+
+function buildDecorations(captures) {
+  const ranges = [];
+  for (const capture of captures) {
+    if (capture.startIndex === capture.endIndex) continue;
+    ranges.push(
+      Decoration.mark({ class: captureToClass(capture.name) }).range(
+        capture.startIndex,
+        capture.endIndex,
+      ),
+    );
   }
+  return Decoration.set(ranges, true);
 }
 
 function captureToClass(name) {

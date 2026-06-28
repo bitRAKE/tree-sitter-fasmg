@@ -11,7 +11,8 @@
         "finc"
       ],
       "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm"
+      "locals": "queries/locals.scm",
+      "folds": "queries/folds.scm"
     }
   ],
   "metadata": {
